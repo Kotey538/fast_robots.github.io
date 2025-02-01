@@ -4,9 +4,3 @@ plugins:
 title: "Fast Robots"
 description: "Documenting my Fast Robots journey!"
 theme: jekyll-theme-cayman
-include: ["docs"]
-defaults:
-  - scope:
-      path: "docs"
-    values:
-      permalink: "/"
