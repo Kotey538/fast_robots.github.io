@@ -1,6 +1,6 @@
 ---
-title: "MAE4910 Fast Robots"
-description: "Documenting my Fast Robots journey!"
+title: "MAE 4910 Fast Robots"
+description: ""
 layout: default
 ---
 
