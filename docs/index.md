@@ -6,5 +6,5 @@ layout: default
 
 # About Me
 
-<img src="assets/images/IMG_0931.jpg" alt="My Photo" style="float: left; margin-right: 15px; width: 150px; border-radius: 10px;">
+<img src="assets/IMG_.jpg" alt="My Photo" style="float: left; margin-right: 15px; width: 150px; border-radius: 10px;">
 
