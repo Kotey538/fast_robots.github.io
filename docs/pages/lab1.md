@@ -41,6 +41,7 @@ Serial.println(temp_f,2);
 ```
 
 ## Task 4: Microphone Test
+Finally, I tested the Example1_MicrophoneOutput sketch found under File -> Examples -> PDM. This sketch collects audio data using the PDM microphone on the board, performs an FFT to identify the loudest frequency, and then displays that frequency on the serial monitor.
 
 ## Reflection
 
