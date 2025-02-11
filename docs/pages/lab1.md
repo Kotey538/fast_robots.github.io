@@ -88,9 +88,44 @@ ble.send_command(CMD.ECHO, "HiHello")
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
 ```
-> ```Robot says -> HiHello :)```
+> `Robot says -> HiHello :)`
 
 ## Task 2: SEND_THREE_FLOATS command
+To send three floats to the Artemis board using the SEND_THREE_FLOATS command and extract the values in the Arduino sketch, I modified the SEND_TWO_INTS case. Instead of two integers (int int_a, int_b), I used three floats (float float_a, float_b, float_c). This required extracting one additional piece of data and appending it to the `char_array`.
+```c
+case SEND_THREE_FLOATS:
+
+    float float_a, float_b, float_c;
+
+    // Extract the next value from the command string as an float
+    success = robot_cmd.get_next_value(float_a);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an float
+    success = robot_cmd.get_next_value(float_b);
+    if (!success)
+        return;
+
+
+    // Extract the next value from the command string as an float
+    success = robot_cmd.get_next_value(float_c);
+    if (!success)
+        return;
+
+    Serial.print("Three Floats: ");
+    Serial.print(float_a);
+    Serial.print(", ");
+    Serial.print(float_b);
+    Serial.print(", ");
+    Serial.println(float_c);
+
+    break;
+```
+Then, I tested it using the Python script to verify that the floats were correctly sent from my computer to the mircocontroller, where they would be extracted and printed to the serial monitor.
+```python
+ble.send_command(CMD.SEND_THREE_FLOATS, "1.618|2.718|3.141")
+```
 
 ## Task 3: GET_TIME_MILLIS command
 ```c
