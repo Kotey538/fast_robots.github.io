@@ -30,6 +30,34 @@ layout: default
 
 
 ### Step 6: Get Time Array Using Notification Handler
+```c
+case SEND_TIME_DATA: {
+    memset(time_data, 0, sizeof(time_data));
+    int i = 0;
+
+    unsigned long start_time = millis(); 
+    while ((millis() - start_time < 10) && (i < array_size)) {
+        
+        time_data[i] = (int) millis();
+        i++;
+    }
+
+    //Send back the array
+    for (int j = 0; j < array_size; j++) {
+
+      if (time_data[j] != 0) {
+
+        tx_estring_value.clear();
+        sprintf(tx_estring_value.char_array, "T%d:%d", j, time_data[j]);
+        tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+      } else break;
+
+    }
+
+    break;
+}
+```
 
 ### Step 7: Get Concurrent Temperature & Time Arrays using Notification Handler
 
