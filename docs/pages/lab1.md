@@ -15,9 +15,27 @@ In this part of the lab, I ensured that the Arduino IDE was installed and update
 
 
 ## Task 1: Blink
-Following the lab manual, I tested the Blink found in `File > Examples > 01.Basics > Blink`. This program  allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
+Following the lab manual, I tested the Blink found in File->Examples->01.Basics. This program allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
 
 ## Task 2: Serial Monitor
+1. Activate the virtual environme
+
+    <div class="tab">
+    <button class="tablinks 2 active" onclick="openTab(event, 'L2', '2')">Serial Moniter</button>
+
+    </div>
+
+    <div id="L2" class="tabcontent 2" style="display: block">
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printf supports printing formatted strings! count: 8
+printf supports printing formatted strings! count: 9
+
+Echo... (type characters into the Serial Monitor to see them echo back)
+
+hi
+echo
+eechho
+eeeecchhhooo</code></pre></div></div>
+    </div>
 
 ## Task 3: Temperature Sensor Test
 ```c
