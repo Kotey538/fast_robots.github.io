@@ -62,7 +62,25 @@ After this lab, I familiarized myself with using some of the board's components,
 ## Prelab
 
 ## Task 1: ECHO command
+To send a string value from the computer to the Artemis board using the ECHO command, I implemented in the echo case to append 'Robot says' followed by the input text and a ':)' at the end.
+```c
+case ECHO:
 
+    char char_arr[MAX_MSG_SIZE];
+
+    // Extract the next value from the command string as a character array
+    success = robot_cmd.get_next_value(char_arr);
+    if (!success)
+        return;
+
+    tx_estring_value.clear();
+    tx_estring_value.append("Robot says -> ");
+    tx_estring_value.append(char_arr);
+    tx_estring_value.append(" :)");
+    tx_characteristic_string.writeValue(tx_estring_value.c_str());
+    
+    break;
+```
 ## Task 2: SEND_THREE_FLOATS command
 
 ## Task 3: GET_TIME_MILLIS command
