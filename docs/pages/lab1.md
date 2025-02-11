@@ -8,14 +8,12 @@ layout: default
 In this lab, I set up and tested the SparkFun RedBoard Artemis Nano, using the Arduino IDE to program the board. I tested various onboard components such as the LED, temperature sensor, and microphone. I also explored Bluetooth connectivity for communication between the board and a computer, using Jupyter notebooks to send and receive data.
 
 * * *
-- - -
-___
----
+
 # Lab 1A
 In this part of the lab, I ensured that the Arduino IDE was installed and updated to the latest version and tested several of the onboard components verify their functionality. Additionally, I confirmed the board's ability to communicate with the serial monitor.
 
 ## Prelab
-
+I had already installed the Arduino IDE from a previous course, so I simply ensured it was updated to the latest version. I also installed the SparkFun Apollo3 board manager. However, I encountered some connection issues with the board and resolved them by updating the CH340 driver.
 
 
 ## Task 1: Blink
