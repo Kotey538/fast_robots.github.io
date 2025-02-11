@@ -43,6 +43,7 @@ Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms
 
 Modified:
 ```c
+Serial.printf("temp F (counts):");
 Serial.println(temp_f,2);
 ```
 
@@ -342,6 +343,7 @@ for (int j = 0; j < array_size; j++) {
 break;
 }
 ```
+Python
 ```python
 ble.send_command(CMD.GET_TEMP_READINGS, "")
 ```
