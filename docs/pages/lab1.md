@@ -15,7 +15,7 @@ In this part of the lab, I ensured that the Arduino IDE was installed and update
 
 
 ## Task 1: Blink
-Following the lab manual, I tested the Blink found in `File > Examples > 01.Basics > Blink`. This program allows for testing the functionality of the onboard LED by toggling it on and off at one-second intervals, ensuring the LED operates correctly
+Following the lab manual, I tested the Blink found in `File > Examples > 01.Basics > Blink`. This program  allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
 
 ## Task 2: Serial Monitor
 
