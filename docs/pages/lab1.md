@@ -1,3 +1,9 @@
+---
+title: "MAE 4910 Fast Robots"
+description: "Lab 1: The Artemis board and Bluetooth"
+layout: default
+---
+
 # Lab 1: The Artemis board and Bluetooth
 
 
