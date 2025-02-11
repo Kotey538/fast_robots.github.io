@@ -4,4 +4,5 @@ plugins:
 title: "MAE 4190 Fast Robots"
 description: "Recording my Fast Robots experience"
 theme: jekyll-theme-midnight
+include: ["index.md"]
 
