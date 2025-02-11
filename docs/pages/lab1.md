@@ -46,7 +46,7 @@ Modified:
 Serial.printf("temp F (counts):");
 Serial.println(temp_f,2);
 ```
-###Changing the tempature with heat of my hand
+### Changing the tempature with heat of my hand
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/AQ97GgEqi_Y" title="Fast Robots Lab 1 Task 3: Temperature Sensor Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
