@@ -5,9 +5,10 @@ layout: default
 ---
 
 # Lab 1: The Artemis board and Bluetooth
-In this part of the lab, we ensured that the Arduino IDE was installed and updated to the latest version and tested several of the onboard components verify their functionality. Additionally, we confirmed the board's ability to communicate with the serial monitor.
+
 
 # Lab 1A
+In this part of the lab, we ensured that the Arduino IDE was installed and updated to the latest version and tested several of the onboard components verify their functionality. Additionally, we confirmed the board's ability to communicate with the serial monitor.
 
 ## Prelab
 
