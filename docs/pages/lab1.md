@@ -368,7 +368,7 @@ Portion of the Ouput
 > ```
 
 
-## Task 8: Compare Speed of Sending Individual Time Values (Step 5) vs Sending Time Arrays (Step 6)
+## Task 8: Compare the Methods of Sending Time Data
 
 
 
