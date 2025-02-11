@@ -5,7 +5,6 @@ layout: default
 ---
 
 # Lab 1: The Artemis board and Bluetooth
-<hr>
 
 # Lab 1A
 
@@ -30,12 +29,24 @@ Serial.println(temp_f,2);
 
 ## Reflection
 
-# Part 1b
+# Lab 1B
 
 ## Prelab
 
+## Task 1: Blink
 
-## Lab Tasks
+## Task 2: Serial Monitor
+
+## Task 3: Temperature Sensor Test
+```c
+Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms) %d\n", temp_raw, vcc_3, vss, millis());
+```
+
+```c
+Serial.println(temp_f,2);
+```
+
+## Task 4: Microphone Test
 
 ### Step 1: ECHO command
 
