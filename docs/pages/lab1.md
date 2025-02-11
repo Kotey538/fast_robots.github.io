@@ -87,7 +87,8 @@ ble.send_command(CMD.ECHO, "HiHello")
 
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
-> ```python
+```
+> ```
 > Robot says -> HiHello :)
 > ```
 
@@ -175,9 +176,10 @@ ble.send_command(CMD.GET_TIME_MILLIS, "")
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
 ```
-> ```python
+> ```
 > T:110092
 > ```
+
 ## Task 4: Setup Notification Handler
 The next step was to set up a notification handler in Python to receive the string value from the Artemis board and extract the time from it. This would allow the data string from the Artemis to be automatically received and printed.
 ```python
