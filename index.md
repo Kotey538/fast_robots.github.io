@@ -14,5 +14,5 @@ Hello! My name is Kotey Ashie, and I’m a double major in Mechanical Engineerin
 <br>
 <br>
 
-## Labs
+# Labs
 - [Lab 1: The Artemis Board and Bluetooth](docs/pages/lab1.md)
