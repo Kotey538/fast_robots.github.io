@@ -87,8 +87,10 @@ ble.send_command(CMD.ECHO, "HiHello")
 
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
-```
-> `Robot says -> HiHello :)`
+> ```python
+> Robot says -> HiHello :)
+> ```
+
 
 ## Task 2: SEND_THREE_FLOATS command
 To send three floats to the Artemis board using the `SEND_THREE_FLOATS` command and extract the values in the Arduino sketch, I modified the `SEND_TWO_INTS` case. Instead of two integers (int int_a, int_b), I used three floats (float float_a, float_b, float_c), and I need extracting one additional piece of data and appending it to the `char_array`.
@@ -131,21 +133,17 @@ ble.send_command(CMD.SEND_THREE_FLOATS, "1.618|2.718|3.141")
 ## Task 3: GET_TIME_MILLIS command
 To add the `GET_TIME_MILLIS command`, I retrieved data from the Artemis's onboard timer using the `millis()` function and then appended the data in a similar manner to the previous tasks.
 ```c
-case ECHO:
-
-    char char_arr[MAX_MSG_SIZE];
-
-    // Extract the next value from the command string as a character array
-    success = robot_cmd.get_next_value(char_arr);
-    if (!success)
-        return;
-
+case GET_TIME_MILLIS: 
+    int time;
+    time = (int)millis();
     tx_estring_value.clear();
-    tx_estring_value.append("Robot says -> ");
-    tx_estring_value.append(char_arr);
-    tx_estring_value.append(" :)");
+    tx_estring_value.append("T:");
+    tx_estring_value.append(time);
     tx_characteristic_string.writeValue(tx_estring_value.c_str());
-    
+
+    Serial.print("Sent back: ");
+    Serial.println(tx_estring_value.c_str());
+
     break;
 ```
 I also added a new command type to `CommandTypes` and the `class CMD(Enum)`.
@@ -177,24 +175,59 @@ ble.send_command(CMD.GET_TIME_MILLIS, "")
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
 ```
-> `T:110092`
+> ```python
+> T:110092
+> ```
 ## Task 4: Setup Notification Handler
+The next step was to set up a notification handler in Python to receive the string value from the Artemis board and extract the time from it. This would allow the data string from the Artemis to be automatically received and printed.
+```python
+time_data = []
 
+def notification_handler(uuid, notification):
+    s = ble.bytearray_to_string(notification)
+    print(s)
+    time_data.append(s.split(":")[1])
+ble.start_notify(ble.uuid['RX_STRING'], notification_handler)
+```
+I modified my notification handler for Task 7 to receive both time and temperature data. This modification allowed it to differentiate between colons and commas, and assess whether the data contained only time values or both temperature and time values.
+```python
+import re
+time_data, temp_data = [],[]
 
-### Step 5: Looping GET_TIME_MILLIS command
+def notification_handler(uuid, notification):
+    s = ble.bytearray_to_string(notification)
+    print(s)
+    data = re.split(r"[:,\s]+", s)
+    time_data.append(int(data[1]))
+    if(len(data)>3):
+        temp_data.append(float(data[3]))
+ble.start_notify(ble.uuid['RX_STRING'], notification_handler)
+```
+
+## Task 5: Looping GET_TIME_MILLIS command
+I developed a LOOP_GET_TIME_MILLIS that continuously retrieves the current time in milliseconds and sends it to the laptop for processing by the notification handler. The logic of GET_TIME_MILLIS was incorporated into a while loop, which ran until a specified duration was reached.
 ```c
-case GET_TIME_MILLIS: 
-    int time;
-    time = (int)millis();
-    tx_estring_value.clear();
-    tx_estring_value.append("T:");
-    tx_estring_value.append(time);
-    tx_characteristic_string.writeValue(tx_estring_value.c_str());
+case LOOP_GET_TIME_MILLIS: {
+    int count = 1;
+    unsigned long start_time = millis();
 
-    Serial.print("Sent back: ");
-    Serial.println(tx_estring_value.c_str());
+    while (millis() - start_time < 5000) {
+
+      // tx_estring_value.clear(); 
+      // tx_estring_value.append("T");
+      // tx_estring_value.append(count);
+      // tx_estring_value.append(":");
+      // tx_estring_value.append((int)millis());
+      // tx_characteristic_string.writeValue(tx_estring_value.c_str());
+      
+      tx_estring_value.clear();
+      sprintf(tx_estring_value.char_array, "T%d:%d", count, (int)millis());
+      tx_characteristic_string.writeValue(tx_estring_value.c_str());
+      count++;
+    }
 
     break;
+}
 ```
 
 ### Step 6: Get Time Array Using Notification Handler
