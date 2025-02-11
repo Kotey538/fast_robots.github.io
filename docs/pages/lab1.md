@@ -88,6 +88,7 @@ ble.send_command(CMD.ECHO, "HiHello")
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
 ```
+Ouput
 > ```
 > Robot says -> HiHello :)
 > ```
@@ -176,6 +177,7 @@ ble.send_command(CMD.GET_TIME_MILLIS, "")
 s = ble.receive_string(ble.uuid['RX_STRING'])
 print(s)
 ```
+Ouput
 > ```
 > T:110092
 > ```
@@ -207,7 +209,7 @@ ble.start_notify(ble.uuid['RX_STRING'], notification_handler)
 ```
 
 ## Task 5: Looping GET_TIME_MILLIS command
-I developed a LOOP_GET_TIME_MILLIS that continuously retrieves the current time in milliseconds and sends it to the laptop for processing by the notification handler. The logic of GET_TIME_MILLIS was incorporated into a while loop, which ran until a specified duration was reached.
+I developed a `LOOP_GET_TIME_MILLIS` that continuously retrieves the current time in milliseconds and sends it to the laptop for processing by the notification handler. The logic of `GET_TIME_MILLIS` was incorporated into a while loop, which ran until a specified duration was reached. I also added a new command type to `CommandTypes` and the `class CMD(Enum)`.
 ```c
 case LOOP_GET_TIME_MILLIS: {
     int count = 1;
@@ -231,8 +233,26 @@ case LOOP_GET_TIME_MILLIS: {
     break;
 }
 ```
+I then tested it in Python to see if it worked.
+```python
+ble.send_command(CMD.LOOP_GET_TIME_MILLIS, "")
+```
+Portion of the Ouput
+> ```
+> T1:3090580
+> T2:3090580
+> T3:3090580
+> T4:3090581
+> T5:3090642
+> T6:3090703
+> T7:3090703
+> T8:3090756
+> T9:3090766
+> 10:3090766
+> ```
+146 timestamps were sent by the Arduino in 5 seconds, indicating a data transfer rate of about 29 messages/second.
 
-### Step 6: Get Time Array Using Notification Handler
+## Task 6: Using Time Array in SEND_TIME_DATA
 ```c
 case SEND_TIME_DATA: {
     memset(time_data, 0, sizeof(time_data));
