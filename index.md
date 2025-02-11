@@ -10,7 +10,8 @@ layout: default
 
 Hello! My name is Kotey Ashie, and I’m a double major in Mechanical Engineering and Electrical & Computer Engineering with a minor in Robotics at Cornell University. My main interest lies in robotics. In my free time, I enjoy reading web novels and watching anime.
 
-<div style="clear: both;"></div>
+<br>
+* * *
 <br>
 
 ## Labs
