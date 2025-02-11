@@ -18,14 +18,13 @@ layout: default
 ## Task 2: Serial Monitor
 
 ## Task 3: Temperature Sensor Test
+```c
+Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms) %d\n", temp_raw, vcc_3, vss, millis());
+```
 
-<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9; margin-top: 20px;">
-  Here is the output from the code:
-  <pre>
-Hello, World!
-This is the code output.
-  </pre>
-</div>
+```c
+Serial.println(temp_f,2);
+```
 
 ## Task 4: Microphone Test
 
