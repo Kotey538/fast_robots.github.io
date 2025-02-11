@@ -20,25 +20,7 @@ Following the lab manual, I tested the Blink found in File->Examples->01.Basics.
 ## Task 2: Serial Monitor
 Next, I tested the Example4_Serial sketch found under File -> Examples -> Apollo3. This program allows the user to input a message to the board, which then echoes the message back. This test ensures the proper functionality of the serial monitor and communication between the board and the computer.
 
-<div id="L2" class="tabcontent 2" style="display: block">
-  <div class="language-plaintext highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight">
-<code>
-printf supports printing formatted strings! count: 8
-printf supports printing formatted strings! count: 9
-
-Echo... (type characters into the Serial Monitor to see them echo back)
-
-hi
-echo
-eechho
-eeeecchhhooo
-</code>
-      </pre>
-    </div>
-  </div>
-</div>
+![image](../images/lab1/Serial.png)
 
 
 ## Task 3: Temperature Sensor Test
