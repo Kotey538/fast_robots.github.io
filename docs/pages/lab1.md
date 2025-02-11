@@ -209,7 +209,7 @@ ble.start_notify(ble.uuid['RX_STRING'], notification_handler)
 ```
 
 ## Task 5: Looping GET_TIME_MILLIS command
-I developed a `LOOP_GET_TIME_MILLIS` that continuously retrieves the current time in milliseconds and sends it to the laptop for processing by the notification handler. The logic of `GET_TIME_MILLIS` was incorporated into a while loop, which ran until a specified duration was reached. I also added a new command type to `CommandTypes` and the `class CMD(Enum)`.
+I developed a `LOOP_GET_TIME_MILLIS` that continuously retrieves the current time in milliseconds and sends it to the laptop for processing by the notification handler. The logic of `GET_TIME_MILLIS` was incorporated into a while loop, which ran until a specified duration was reached. I also added a new command type to `CommandTypes` and the `class CMD(Enum)`. I also streamlined the process of adding values to the `char_array`. Instead of using a separate append statement for each new data type, I opted to use `sprintf()` to directly format and store the values into the `char_array`.
 ```c
 case LOOP_GET_TIME_MILLIS: {
     int count = 1;
