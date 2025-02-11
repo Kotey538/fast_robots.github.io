@@ -4,7 +4,7 @@ description: "Lab 1: The Artemis board and Bluetooth"
 layout: default
 ---
 
-# Lab 1: The Artemis board and Bluetooth
+<h2><u># Lab 1: The Artemis board and Bluetooth<h2><u>
 
 
 # Lab 1A
