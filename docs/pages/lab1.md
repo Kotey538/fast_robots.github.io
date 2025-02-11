@@ -18,9 +18,7 @@ In this part of the lab, I ensured that the Arduino IDE was installed and update
 Following the lab manual, I tested the Blink found in File->Examples->01.Basics. This program allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
 
 ## Task 2: Serial Monitor
-
-<div class="tab">
-<button class="tablinks 2 active" onclick="openTab(event, 'L2', '2')">Serial Moniter</button>
+Next, I tested the Example4_Serial sketch found under File -> Examples -> Apollo3. This program allows the user to input a message to the board, which then echoes the message back. This test ensures the proper functionality of the serial monitor and communication between the board and the computer.
 
 <div id="L2" class="tabcontent 2" style="display: block">
   <div class="language-plaintext highlighter-rouge">
@@ -41,6 +39,7 @@ eeeecchhhooo
     </div>
   </div>
 </div>
+
 
 ## Task 3: Temperature Sensor Test
 ```c
