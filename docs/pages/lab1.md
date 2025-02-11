@@ -20,7 +20,7 @@ Following the lab manual, I tested the Blink found in File->Examples->01.Basics.
 ## Task 2: Serial Monitor
 Next, I tested the Example4_Serial sketch found under File -> Examples -> Apollo3. This program allows the user to input a message to the board, which then echoes the message back. This test ensures the proper functionality of the serial monitor and communication between the board and the computer.
 
-![image](../images/lab1/Serial.png)
+![image](../images/lab1/Serial.PNG)
 
 
 ## Task 3: Temperature Sensor Test
