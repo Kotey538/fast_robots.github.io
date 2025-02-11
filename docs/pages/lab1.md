@@ -62,7 +62,7 @@ After this lab, I familiarized myself with using some of the board's components,
 ## Prelab
 
 ## Task 1: ECHO command
-To send a string value from the computer to the Artemis board using the ECHO command, I implemented in the echo case to append 'Robot says' followed by the input text and a ':)' at the end.
+To send a string value from the computer to the Artemis board using the ECHO command, I implemented in the echo case to append 'Robot says ->' followed by the input text and a ':)' at the end.
 ```c
 case ECHO:
 
