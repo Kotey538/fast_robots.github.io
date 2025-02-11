@@ -129,7 +129,7 @@ ble.send_command(CMD.SEND_THREE_FLOATS, "1.618|2.718|3.141")
 ![image](../images/lab1/Serial_floats.PNG)
 
 ## Task 3: GET_TIME_MILLIS command
-To add the GET_TIME_MILLIS command, I retrieved data from the Artemis's onboard timer using the millis() function and then appended the data in a similar manner to the previous tasks.
+To add the `GET_TIME_MILLIS command`, I retrieved data from the Artemis's onboard timer using the `millis()` function and then appended the data in a similar manner to the previous tasks.
 ```c
 case ECHO:
 
@@ -148,7 +148,7 @@ case ECHO:
     
     break;
 ```
-I also added a new command type to CommandTypes and the class CMD(Enum).
+I also added a new command type to `CommandTypes` and the `class CMD(Enum)`.
 ```c
 enum CommandTypes
 {
