@@ -19,6 +19,14 @@ layout: default
 
 ## Task 3: Temperature Sensor Test
 
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9; margin-top: 20px;">
+  Here is the output from the code:
+  <pre>
+Hello, World!
+This is the code output.
+  </pre>
+</div>
+
 ## Task 4: Microphone Test
 
 ## Reflection
