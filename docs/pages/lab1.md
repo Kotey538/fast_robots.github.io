@@ -367,9 +367,15 @@ Portion of the Ouput
 > T10:5686836, Temp:88.242
 > ```
 
-### Step 8: Compare Speed of Sending Individual Time Values (Step 5) vs Sending Time Arrays (Step 6)
+
+## Task 8: Compare Speed of Sending Individual Time Values (Step 5) vs Sending Time Arrays (Step 6)
 
 
 
-## Reflection
-This experiment helped me understand...
+## Discusion
+
+
+* * *
+
+# Acknowledgements
+*   I referenced Nila Narayan’s pages to understand the logic of some of the tasks in Lab 1B
