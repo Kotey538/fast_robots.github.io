@@ -41,6 +41,7 @@ eeeecchhhooo
     </div>
   </div>
 </div>
+
 ## Task 3: Temperature Sensor Test
 ```c
 Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms) %d\n", temp_raw, vcc_3, vss, millis());
