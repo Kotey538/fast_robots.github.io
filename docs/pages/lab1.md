@@ -54,7 +54,7 @@ Finally, I tested the Example1_MicrophoneOutput sketch found under File -> Examp
 <br>
 
 ## Discussion
-After this lab, I familiarized myself with using some of the board's components, such as the LED, which I’ve used on other microcontrollers, and the microphone, which was new to me. I also revisited using Serial.print to the serial monitor, a skill that will be useful in future labs.
+After this lab, I familiarized myself with using some of the board's components, such as the LED, which I’ve used on other microcontrollers, and the microphone, which was new to me. I also relearned using Serial.print to the serial monitor, a skill that will be useful in future labs.
 * * *
 
 # Lab 1B
