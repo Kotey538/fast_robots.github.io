@@ -94,7 +94,7 @@ Ouput
 > ```
 
 
-## Task 2: SEND_THREE_FLOATS command
+## Task 2: Sending floats with SEND_THREE_FLOATS
 To send three floats to the Artemis board using the `SEND_THREE_FLOATS` command and extract the values in the Arduino sketch, I modified the `SEND_TWO_INTS` case. Instead of two integers (int int_a, int_b), I used three floats (float float_a, float_b, float_c), and I need extracting one additional piece of data and appending it to the `char_array`.
 ```c
 case SEND_THREE_FLOATS:
@@ -132,7 +132,7 @@ ble.send_command(CMD.SEND_THREE_FLOATS, "1.618|2.718|3.141")
 ```
 ![image](../images/lab1/Serial_floats.PNG)
 
-## Task 3: GET_TIME_MILLIS command
+## Task 3: Sending time data with GET_TIME_MILLIS
 To add the `GET_TIME_MILLIS command`, I retrieved data from the Artemis's onboard timer using the `millis()` function and then appended the data in a similar manner to the previous tasks.
 ```c
 case GET_TIME_MILLIS: 
@@ -252,7 +252,16 @@ Portion of the Ouput
 > ```
 146 timestamps were sent by the Arduino in 5 seconds, indicating a data transfer rate of about 29 messages/second.
 
-## Task 6: Using Time Array in SEND_TIME_DATA
+## Task 6: Using Time Array to in SEND_TIME_DATA
+The task required creating an array of timestamps to store a chunk of data and send it all at once, rather than sending each data point individually. I first created a global time_data array, with its size limiting the amount of data that could be stored in the array.
+
+```c
+const int array_size = 5000;
+int time_data[array_size];
+float temp_data[array_size];
+```
+I then stored values in the time_data array using a while loop, restricted by both a time limit and the maximum amount of data the array could hold. A for loop was subsequently used to retrieve each timestamp from the array and format it into a string for transmission to my computer. I added `memset`because I noticed between some runs of `SEND_TIME_DATA` Python old values would be stored and not replaced.
+
 ```c
 case SEND_TIME_DATA: {
     memset(time_data, 0, sizeof(time_data));
@@ -281,8 +290,27 @@ case SEND_TIME_DATA: {
     break;
 }
 ```
+Python:
+```python
+ble.send_command(CMD.SEND_TIME_DATA, "")
+```
+Portion of the Ouput
+> ```
+> T0:4758603
+> T1:4758603
+> T2:4758603
+> T3:4758603
+> T4:4758603
+> T5:4758603
+> T6:4758603
+> T7:4758603
+> T8:4758603
+> T9:4758603
+> T10:4758603
+> ```
 
-### Step 7: Get Concurrent Temperature & Time Arrays using Notification Handler
+## Task 7: Send Concurrent Temperature & Time using Arrays
+Similar to the previous task, this one requires both time and temperature data to be stored in an array and sent all at once. Since it builds on the previous step, I added a global temp_data array and used the same logic as the previous task populate the array with temperature data and send it to the computer.
 ```c
 case GET_TEMP_READINGS: {
 memset(time_data, 0, sizeof(time_data));
@@ -314,6 +342,24 @@ for (int j = 0; j < array_size; j++) {
 break;
 }
 ```
+```python
+ble.send_command(CMD.GET_TEMP_READINGS, "")
+```
+Portion of the Ouput
+> ```
+> T0:5686834, Temp:87.186
+> T1:5686834, Temp:87.186
+> T2:5686834, Temp:87.186
+> T3:5686835, Temp:87.186
+> T4:5686835, Temp:87.186
+> T5:5686835, Temp:86.130
+> T6:5686835, Temp:87.186
+> T7:5686836, Temp:87.186
+> T8:5686836, Temp:87.186
+> T9:5686836, Temp:88.242
+> T10:5686836, Temp:88.242
+> ```
+
 ### Step 8: Compare Speed of Sending Individual Time Values (Step 5) vs Sending Time Arrays (Step 6)
 
 
