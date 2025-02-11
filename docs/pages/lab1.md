@@ -91,7 +91,7 @@ print(s)
 > `Robot says -> HiHello :)`
 
 ## Task 2: SEND_THREE_FLOATS command
-To send three floats to the Artemis board using the SEND_THREE_FLOATS command and extract the values in the Arduino sketch, I modified the SEND_TWO_INTS case. Instead of two integers (int int_a, int_b), I used three floats (float float_a, float_b, float_c). This required extracting one additional piece of data and appending it to the `char_array`.
+To send three floats to the Artemis board using the `SEND_THREE_FLOATS` command and extract the values in the Arduino sketch, I modified the `SEND_TWO_INTS` case. Instead of two integers (int int_a, int_b), I used three floats (float float_a, float_b, float_c), and I need extracting one additional piece of data and appending it to the `char_array`.
 ```c
 case SEND_THREE_FLOATS:
 
@@ -128,14 +128,55 @@ ble.send_command(CMD.SEND_THREE_FLOATS, "1.618|2.718|3.141")
 ```
 
 ## Task 3: GET_TIME_MILLIS command
+To add the GET_TIME_MILLIS command, I retrieved data from the Artemis's onboard timer using the millis() function and then appended the data in a similar manner to the previous tasks.
 ```c
-Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms) %d\n", temp_raw, vcc_3, vss, millis());
-```
+case ECHO:
 
+    char char_arr[MAX_MSG_SIZE];
+
+    // Extract the next value from the command string as a character array
+    success = robot_cmd.get_next_value(char_arr);
+    if (!success)
+        return;
+
+    tx_estring_value.clear();
+    tx_estring_value.append("Robot says -> ");
+    tx_estring_value.append(char_arr);
+    tx_estring_value.append(" :)");
+    tx_characteristic_string.writeValue(tx_estring_value.c_str());
+    
+    break;
+```
+I also added a new command type to CommandTypes and the class CMD(Enum).
 ```c
-Serial.println(temp_f,2);
+enum CommandTypes
+{
+    PING,
+    SEND_TWO_INTS,
+    SEND_THREE_FLOATS,
+    ECHO,
+    DANCE,
+    SET_VEL,
+    GET_TIME_MILLIS,
+};
 ```
+```python
+class CMD(Enum):
+    PING = 0
+    SEND_TWO_INTS = 1
+    SEND_THREE_FLOATS = 2
+    ECHO = 3
+    DANCE = 4
+    SET_VEL = 5
+```
+I then tested it in Python to see if it worked.
+```python
+ble.send_command(CMD.GET_TIME_MILLIS, "")
 
+s = ble.receive_string(ble.uuid['RX_STRING'])
+print(s)
+```
+> `T:110092`
 ## Task 4: Setup Notification Handler
 
 
