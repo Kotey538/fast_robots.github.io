@@ -1,4 +1,3 @@
-
 ---
 title: "MAE 4910 Fast Robots"
 description: "Lab 2: IMU"
