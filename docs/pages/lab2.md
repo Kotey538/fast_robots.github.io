@@ -35,7 +35,7 @@ I then ran Example1_Basics (located in File->Examples->ICM 2094->Arduino->Exampl
 <br>
 
 ## Task 2: Accelerometer
-This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch $\theta$ and roll $\phi$.
+This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch and roll.
 
 <div style="display: flex; justify-content: center;">
   <img src="../images/lab2/Pitch_A.png" alt="Pitch" width="45%">
@@ -49,8 +49,10 @@ $$
 $$
 \phi = \atan2(a_y, a_z)
 $$
-
-
+```c
+pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
+roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
+```
 ## Task 3: Temperature Sensor Test
 I then tested the Example2_analogRead sketch found under File -> Examples -> Apollo3. This example uses the microcontroller’s internal ADC channels to measure various parameters, including the internal die temperature, and prints the sensor data to the serial monitor.
 
