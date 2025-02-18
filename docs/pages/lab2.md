@@ -18,7 +18,7 @@ I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its f
 In order to setup the IMU, I first install the “SparkFun 9DOF IMU Breakout_ICM 20948_Arduino Library” from the Arduino Library Manager and connect the IMU to the Artemis board using the QWIIC connectors. 
 
 
-I then  ran Example1_Basics found in File->Examples->ICM 20948_>Arduino > Example1_Basics  to verify proper sensor communication. The AD0_VAL definition was checked to determine the correct I²C address configuration. 
+I then  ran Example1_Basics found in File->Examples->ICM 20948_>Arduino > Example1_Basics  to verify proper sensor communication. The AD0_VAL definition represents the value of the last bit of the I2C address. Seeing as the the ADR jumper is not closed it's value should be 1.
 
 
 
