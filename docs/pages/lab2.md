@@ -4,17 +4,17 @@ description: "Lab 2: IMU"
 layout: default
 ---
 
-# Lab 1: IMU
-In this lab, 
+# Lab 2: IMU
+In this lab, I set up an Inertial Measurement Unit (IMU) to analyze accelerometer and gyroscope data and used filtering techniques to improve signal accuracy. I concluded the lab with an RC car stunt to to test out the capabilities of the RC car.
 
 * * *
 
 
 # Prelab
-I had already installed the Arduino IDE from a previous course, so I simply ensured it was updated to the latest version. I also installed the SparkFun Apollo3 board manager. However, I encountered some connection issues with the board and resolved them by updating the CH340 driver.
+I familiarize myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
 
-## Task 1: Setup
+## Task 1: Setup the IMU
 Following the lab manual, I tested the Blink found in File->Examples->01.Basics. This program allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/KpyS8cVwcT8" title="Fast Robots Lab 1 Task 1: Blink" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
