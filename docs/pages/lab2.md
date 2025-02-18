@@ -47,6 +47,7 @@ I then test this code by showing the output at {-90, 0, 90} degrees pitch and ro
   <img src="../images/lab2/Pitch_A.png" alt="Pitch" width="45%">
   <img src="../images/lab2/Roll_A.png" alt="Roll" width="45%">
 </div>
+<br>
 
 From the graphs, it is evident that the accelerometer output is highly accurate, making a two-point calibration unnecessary. However, the data also exhibits significant noise, which can be mitigated using a low-pass filter. Utilizing Skyfi’s FFT, a cutoff frequency of 5 Hz was selected. With a sampling period of 2.56 ms, the corresponding filter coefficient (α) was calculated to be 0.0746
 
@@ -60,6 +61,7 @@ roll_LPF[n-1] = roll_LPF[n];
 ![image](../images/lab2/time_domain.png)
 ![image](../images/lab2/freq_domain.png)
 
+The graphs demonstrate that the chosen cutoff frequency effectively reduces noise, resulting in a clearer and more stable signal.
 
 ## Task 3: Temperature Sensor Test
 I then tested the Example2_analogRead sketch found under File -> Examples -> Apollo3. This example uses the microcontroller’s internal ADC channels to measure various parameters, including the internal die temperature, and prints the sensor data to the serial monitor.
