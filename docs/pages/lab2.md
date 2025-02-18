@@ -87,6 +87,8 @@ Observing the gyroscope data reveals two key insights: first, the gyroscope's ou
 
 ![image](../images/lab2/46.png)
 
+The graph indicates that decreasing the sampling rate leads to a noisier signal and an increase in drift, reducing the overall accuracy of the gyroscope's output.
+
 
 ## Task 5: Stunts
 The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
@@ -95,12 +97,14 @@ The final task of the lab involved performing a stunt with the RC car to evaluat
 </div>
 <br>
 
+Controlling the RC car with the remote was challenging and imprecise, highlighting the necessity of implementing autonomous control for improved stability and maneuverability.
+
 ## Discussion
-After this lab, I familiarized myself with using some of the board's components, such as the LED, which I’ve used on other microcontrollers, and the microphone, which was new to me. I also relearned using Serial.print to the serial monitor, a skill that will be useful in future labs.
+This lab highlighted the importance of managing data transmission when implementing the complementary filter, as sending excessive data can cause BLE communication to crash. Understanding this limitation will be crucial for optimizing data handling in future labs.
 * * *
 
 
 * * *
 
 # Acknowledgements
-*   I referenced Nila Narayan’s pages to understand the logic of some of the tasks in Lab 1B
+*   I referenced Nila Narayan and Stephan Wagner’s pages.
