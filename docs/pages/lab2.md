@@ -65,7 +65,9 @@ roll_LPF[n-1] = roll_LPF[n];
 
 ![image](../images/lab2/accel_lpf.png)
 
-The graphs demonstrate that the chosen cutoff frequency effectively reduces noise, resulting in a clearer and more stable signal.
+![image](../images/lab2/accel_n_gyro.png)
+
+One graph represents the IMU placed on a flat surface with no pitch or roll, while the other captures random rotations applied to the IMU. The results demonstrate that the selected cutoff frequency effectively attenuates noise, producing a clearer and more stable signal.
 
 ## Task 3: Gyroscope
 Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
@@ -81,32 +83,10 @@ Next, I tested the gyroscope output while keeping roll, pitch, and yaw fixed at 
 
 ![image](../images/lab2/accel_n_gyro.png)
 
+Observing the gyroscope data reveals two key insights: first, the gyroscope's output exhibits less noise compared to the accelerometer; second, the gyroscope experiences accumulating error (drift), causing its readings to become less accurate over time. Subsequently, I introduced a delay to reduce the sampling rate and analyzed its impact on the gyroscope's output. This allowed for an evaluation of how different sampling frequencies affect data accuracy and drift over time.
 
+![image](../images/lab2/46.png)
 
-However, there are a few issues with the output of Example4_Serial. The serial monitor displays the temp_raw values, which are raw ADC readings from the microcontroller, so these values are not easily interpretable as temperature. Additionally, the internal VCC and VSS voltages are displayed, which were not necessary since the focus is on the temperature data. As a result, I modified the code to output only the temperature in Fahrenheit to the serial monitor.
-
-Original:
-```c
-Serial.printf("temp (counts): %d, vcc/3 (counts): %d, vss (counts): %d, time (ms) %d\n", temp_raw, vcc_3, vss, millis());
-```
-
-Modified:
-```c
-Serial.printf("temp F (counts):");
-Serial.println(temp_f,2);
-```
-### Changing the tempature with heat of my hand
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/AQ97GgEqi_Y" title="Fast Robots Lab 1 Task 3: Temperature Sensor Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
-
-## Task 4: Microphone Test
-Finally, I tested the Example1_MicrophoneOutput sketch found under File -> Examples -> PDM. This sketch collects audio data using the PDM microphone on the board, performs an FFT to identify the loudest frequency, and then displays that frequency on the serial monitor. I used my laptop to output various frequencies to test the microphone.
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/A70o280L-O4" title="Fast Robots Lab 1 Task 4: Microphone Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
 
 ## Task 5: Stunts
 The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
