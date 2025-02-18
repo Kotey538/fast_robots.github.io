@@ -35,10 +35,13 @@ I then ran Example1_Basics (located in File->Examples->ICM 2094->Arduino->Exampl
 <br>
 
 ## Task 2: Accelerometer
-Next, I tested the Example4_Serial sketch found under File -> Examples -> Apollo3. This program allows the user to input a message to the board, which then echoes the message back. This test ensures the proper functionality of the serial monitor and communication between the board and the computer.
+This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch $\theta$ and roll $\phi$.
 
-![image](../images/lab2/Pitch_A.PNG) ![image](../images/lab2/Roll_A.PNG)
-
+![image](../images/lab2/Pitch_A.png) ![image](../images/lab2/Roll_A.png)
+$$
+\theta = \atan2(a_x, a_z)
+\phi = \atan2(a_y, a_z)
+$$
 
 ## Task 3: Temperature Sensor Test
 I then tested the Example2_analogRead sketch found under File -> Examples -> Apollo3. This example uses the microcontroller’s internal ADC channels to measure various parameters, including the internal die temperature, and prints the sensor data to the serial monitor.
