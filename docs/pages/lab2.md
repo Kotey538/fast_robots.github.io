@@ -37,16 +37,30 @@ I then ran Example1_Basics (located in File->Examples->ICM 2094->Arduino->Exampl
 ## Task 2: Accelerometer
 This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch and roll.
 
+```c
+pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
+roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
+```
+I then test this code by showing the output at {-90, 0, 90} degrees pitch and roll by holding the IMU in various ways against a table.
+
 <div style="display: flex; justify-content: center;">
   <img src="../images/lab2/Pitch_A.png" alt="Pitch" width="45%">
   <img src="../images/lab2/Roll_A.png" alt="Roll" width="45%">
 </div>
 
+From the graphs, it is evident that the accelerometer output is highly accurate, making a two-point calibration unnecessary. However, the data also exhibits significant noise, which can be mitigated using a low-pass filter. Utilizing Skyfi’s FFT, a cutoff frequency of 5 Hz was selected. With a sampling period of 2.56 ms, the corresponding filter coefficient (α) was calculated to be 0.0746
 
 ```c
-pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
-roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
+pitch_LPF[n] = alpha*pitch_data[i] + (1-alpha)*pitch_LPF[n-1];
+pitch_LPF[n-1] = pitch_LPF[n];
+roll_LPF[n] = alpha*roll_data[i]+ (1-alpha)*roll_LPF[n-1];
+roll_LPF[n-1] = roll_LPF[n];
 ```
+
+![image](../images/lab2/time_domain.png)
+![image](../images/lab2/freq_domain.png)
+
+
 ## Task 3: Temperature Sensor Test
 I then tested the Example2_analogRead sketch found under File -> Examples -> Apollo3. This example uses the microcontroller’s internal ADC channels to measure various parameters, including the internal die temperature, and prints the sensor data to the serial monitor.
 
