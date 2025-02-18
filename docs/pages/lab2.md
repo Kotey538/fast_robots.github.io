@@ -42,13 +42,7 @@ This task primarily involved obtaining pitch and roll values using an accelerome
   <img src="../images/lab2/Roll_A.png" alt="Roll" width="45%">
 </div>
 
-$$
-\theta = \atan2(a_x, a_z)
-$$
 
-$$
-\phi = \atan2(a_y, a_z)
-$$
 ```c
 pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
 roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
