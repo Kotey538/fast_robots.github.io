@@ -79,7 +79,7 @@ yaw_gyro[n] =  yaw_gyro[n-1] + myICM.gyrZ()*dt;
 ```
 Next, I tested the gyroscope output while keeping roll, pitch, and yaw fixed at zero to view baseline sensor readings
 
-![image](../images/lab2/accel_n_gyro.PNG)
+![image](../images/lab2/accel_n_gyro.png)
 
 
 
