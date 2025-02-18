@@ -11,11 +11,22 @@ In this lab, I set up an Inertial Measurement Unit (IMU) to analyze acceleromete
 
 
 # Prelab
-I familiarize myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
+I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
 
 ## Task 1: Setup the IMU
-Following the lab manual, I tested the Blink found in File->Examples->01.Basics. This program allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
+In order to setup the IMU, I first install the “SparkFun 9DOF IMU Breakout_ICM 20948_Arduino Library” from the Arduino Library Manager and connect the IMU to the Artemis board using the QWIIC connectors. 
+
+
+I then  ran Example1_Basics found in File->Examples->ICM 20948_>Arduino > Example1_Basics  to verify proper sensor communication. The AD0_VAL definition was checked to determine the correct I²C address configuration. 
+
+
+
+
+
+
+
+ tested the Blink found in File->Examples->01.Basics. This program allows for one the to test functionality of the onboard LED by toggling it on and off at one-second intervals.
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/KpyS8cVwcT8" title="Fast Robots Lab 1 Task 1: Blink" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
