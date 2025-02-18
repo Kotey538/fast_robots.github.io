@@ -40,6 +40,8 @@ This task primarily involved obtaining pitch and roll values using an accelerome
 ![image](../images/lab2/Pitch_A.png) ![image](../images/lab2/Roll_A.png)
 $$
 \theta = \atan2(a_x, a_z)
+$$
+$$
 \phi = \atan2(a_y, a_z)
 $$
 
