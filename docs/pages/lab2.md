@@ -89,7 +89,7 @@ Observing the gyroscope data reveals two key insights: first, the gyroscope's ou
 
 The graph indicates that decreasing the sampling rate leads to a noisier signal and an increase in drift, reducing the overall accuracy of the gyroscope's output.
 
-![image](../images/Accuracy.png)
+![image](../images/lab2/Accuracy.png)
 
 ## Task 5: Stunts
 The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
