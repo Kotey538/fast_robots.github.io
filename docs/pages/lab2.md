@@ -67,10 +67,21 @@ roll_LPF[n-1] = roll_LPF[n];
 
 The graphs demonstrate that the chosen cutoff frequency effectively reduces noise, resulting in a clearer and more stable signal.
 
-## Task 3: Temperature Sensor Test
-I then tested the Example2_analogRead sketch found under File -> Examples -> Apollo3. This example uses the microcontroller’s internal ADC channels to measure various parameters, including the internal die temperature, and prints the sensor data to the serial monitor.
+## Task 3: Gyroscope
+Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
 
-![image](../images/lab1/Serial_Temp.PNG)
+```c
+dt = (micros()-last_time)/1000000.;
+last_time = micros(); 
+pitch_gyro[n] = pitch_gyro[n-1] + myICM.gyrX()*dt;
+roll_gyro[n] =  roll_gyro[n-1] + myICM.gyrY()*dt;
+yaw_gyro[n] =  yaw_gyro[n-1] + myICM.gyrZ()*dt;
+```
+Next, I tested the gyroscope output while keeping roll, pitch, and yaw fixed at zero to view baseline sensor readings
+
+![image](../images/lab2/accel_n_gyro.PNG)
+
+
 
 However, there are a few issues with the output of Example4_Serial. The serial monitor displays the temp_raw values, which are raw ADC readings from the microcontroller, so these values are not easily interpretable as temperature. Additionally, the internal VCC and VSS voltages are displayed, which were not necessary since the focus is on the temperature data. As a result, I modified the code to output only the temperature in Fahrenheit to the serial monitor.
 
