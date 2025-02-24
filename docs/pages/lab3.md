@@ -12,7 +12,8 @@ In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the Spar
 
 ## Prelab
 I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
-
+### Wiring Diagram
+![image](../images/lab3/Wiring_Diagram.jpg)
 
 ## Task 1: Setup the IMU
 To set up the IMU, I first installed the SparkFun 9DOF IMU Breakout_ICM 20948_Arduino Library from the Arduino Library Manager and connected the IMU to the Artemis board using the QWIIC connectors.
