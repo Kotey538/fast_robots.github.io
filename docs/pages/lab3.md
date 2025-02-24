@@ -14,6 +14,7 @@ In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the Spar
 I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
 ### I2C Address
+![image](../images/lab3/i2c_address.PNG)
 
 ### Using 2 ToF Sensors
 
