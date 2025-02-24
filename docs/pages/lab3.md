@@ -15,7 +15,7 @@ I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its f
 
 ### Default I2C Address
 As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf), the default I2C address of the VL53L1X Tof sensor is is 0x52.
-![image](../images/lab3/manual.PNG)
+![image](../images/lab3/manual.png)
 
 ### Using 2 ToF Sensors
 
