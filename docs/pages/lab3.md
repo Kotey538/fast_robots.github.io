@@ -5,7 +5,7 @@ layout: default
 ---
 
 # Lab 3: ToF Sensors
-In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the SparkFun RedBoard Artemis Nano and I evaluated the sensors' range, accuracy, repeatability, and timing performance, selecting the optimal distance mode for future obstacle detection applications. Finally, I modified previous code to log synchronized, time-stamped ToF and IMU data, transmitting it over Bluetooth and generating plots to analyze sensor outputs over time.
+In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the SparkFun RedBoard Artemis Nano and evaluated the sensors' range, accuracy, repeatability, and timing performance, selecting the optimal distance mode for future obstacle detection applications. Finally, I modified previous code to log synchronized, time-stamped ToF and IMU data, transmitting it over Bluetooth and generating plots to analyze sensor outputs over time.
 
 * * *
 
