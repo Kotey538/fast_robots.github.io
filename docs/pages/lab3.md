@@ -14,7 +14,7 @@ In this lab, I integrated two [VL53L1X Time-of-Flight (ToF)](https://www.pololu.
 I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
 ### Default I2C Address
-As per the datasheet, the default I2C address of the VL53L1X Tof sensor is is 0x52.
+As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf), the default I2C address of the VL53L1X Tof sensor is is 0x52.
 ![image](../images/lab3/i2c_address.PNG)
 
 ### Using 2 ToF Sensors
