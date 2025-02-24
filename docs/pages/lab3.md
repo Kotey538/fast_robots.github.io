@@ -21,7 +21,7 @@ As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf)
 ### Ssensor Placement
 I intend to place the ToF sensors on the front and back of the RC car. In most cases, the car will either need to detect an obstacle in front as it moves forward or detect an obstacle behind it while reversing. An additional consideration is that the car can flip and move in reverse, causing the "front" and "back" orientations to interchange. Placing sensors on both ends ensures consistent obstacle detection regardless of the car's orientation or direction of movement.
 
-However, this configuration introduces a blind spot along the sides of the car. For example, if the car moves nearly parallel to a wall but approaches it at a slight angle, the ToF sensors would be unable to detect the wall.
+However, this configuration introduces a blind spot along the sides of the car. For example, if the car were moving nearly parallel to a wall but approaching it at a slight angle, the ToF sensors would be unable to detect the wall.
 
 ### Wiring Diagram
 ![image](../images/lab3/Wiring_Diagram.svg)
