@@ -27,20 +27,6 @@ As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf)
 
 ![image](../images/lab3/battery.jpg)
 
-I then ran Example1_Basics (located in File->Examples->ICM 2094->Arduino->Example1_Basics) to verify proper sensor communication. The AD0_VAL definition represents the value of the least significant bit of the I²C address. Since the ADR jumper is not closed, its value should be 1. Finally, I implemented so code to blinked the LED a couple of times on start-up to visually indicate that the board is running.
-```c
- pinMode(LED_BUILTIN, OUTPUT);
- digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED starts LOW (off)
-
- for(int i = 0; i < 6; i++){
-   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // toggle the LED 
-   delay(1000);   
-```
-
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/A_9lWRYChoQ" title="Fast Robots Lab 2: Blink on Start-UP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
 
 ## Task 2: Accelerometer
 This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch and roll.
