@@ -11,7 +11,6 @@ In this lab, I integrated two [VL53L1X Time-of-Flight (ToF)](https://www.pololu.
 
 
 ## Prelab
-I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
 ### Default I2C Address
 As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf), the default I2C address of the VL53L1X Tof sensor is is 0x52.
@@ -24,10 +23,9 @@ As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf)
 ### Wiring Diagram
 ![image](../images/lab3/Wiring_Diagram.svg)
 
-## Task 1: Setup the IMU
-To set up the IMU, I first installed the SparkFun 9DOF IMU Breakout_ICM 20948_Arduino Library from the Arduino Library Manager and connected the IMU to the Artemis board using the QWIIC connectors.
+## Task 1: Battery Powering the Artemis
 
-![image](../images/lab2/QWIIC.jpg)
+![image](../images/lab3/battery.jpg)
 
 I then ran Example1_Basics (located in File->Examples->ICM 2094->Arduino->Example1_Basics) to verify proper sensor communication. The AD0_VAL definition represents the value of the least significant bit of the I²C address. Since the ADR jumper is not closed, its value should be 1. Finally, I implemented so code to blinked the LED a couple of times on start-up to visually indicate that the board is running.
 ```c
