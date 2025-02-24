@@ -5,7 +5,7 @@ layout: default
 ---
 
 # Lab 3: ToF Sensors
-In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the SparkFun RedBoard Artemis Nano and evaluated the sensors' range, accuracy, repeatability, and timing performance, selecting the optimal distance mode for future obstacle detection applications. Finally, I modified previous code to log synchronized, time-stamped ToF and IMU data, transmitting it over Bluetooth and generating plots to analyze sensor outputs over time.
+In this lab, I integrated two [VL53L1X Time-of-Flight (ToF)](https://www.pololu.com/product/3415) sensors with the SparkFun RedBoard Artemis Nano and evaluated the sensors' range, accuracy, repeatability, and timing performance, selecting the optimal distance mode for future obstacle detection applications. Finally, I modified previous code to log synchronized, time-stamped ToF and IMU data, transmitting it over Bluetooth and generating plots to analyze sensor outputs over time.
 
 * * *
 
@@ -13,7 +13,8 @@ In this lab, I integrated two VL53L1X Time-of-Flight (ToF) sensors with the Spar
 ## Prelab
 I familiarized myself with the SparkFun 9DOF IMU Breakout board, including its functionality and the associated Arduino library and reviewed the ICM-20948 datasheet.
 
-### I2C Address
+### Default I2C Address
+As per the datasheet, the default I2C address of the VL53L1X Tof sensor is is 0x52.
 ![image](../images/lab3/i2c_address.PNG)
 
 ### Using 2 ToF Sensors
