@@ -45,7 +45,10 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 
 ## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
-![image](../images/lab3/install.PNG)
+<div style="text-align: center;">
+  <img src="../images/lab3/install.PNG" alt="Description" width="400">
+</div>
+
 
 
 ## Task 2: QWIIC Connections
