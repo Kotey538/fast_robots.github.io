@@ -75,9 +75,12 @@ To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketc
 The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b01010010 (0x52) → 0b00101001 (0x29)`.
 
 ## Task 4: ToF Sensor Mode
+The ToF sensor offers three distinct modes. Short mode provides the fastest response, with a maximum range of 1.3 meters and high immunity to ambient light, but its limited range might cause it to miss distant obstacles. Medium mode extends the range to 3 meters but has a slower response and higher sensitivity to ambient light. Long mode reaches up to 4 meters, with the slowest response time and greatest susceptibility to ambient light.
 
+Considering these factors, I believe Short mode is the most suitable option for the final robot, as its rapid response enables the Artemis to quickly receive sensor data, while its reliability under various lighting conditions ensures consistent performance.
 
-Controlling the RC car with the remote was challenging and imprecise, highlighting the necessity of implementing autonomous control for improved stability and maneuverability.
+## Task 5: ToF Sensor Mode
+
 
 ## Discussion
 This lab highlighted the importance of managing data transmission when implementing the complementary filter, as sending excessive data can cause BLE communication to crash. Understanding this limitation will be crucial for optimizing data handling in future labs.
