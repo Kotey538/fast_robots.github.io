@@ -51,9 +51,8 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 ## Task 2: QWIIC Connections
 ![image](../images/lab3/QWIIC_to_Artemis.jpg)
-![image](../images/lab3/QWIIC.jpg)
 ![image](../images/lab3/QWIIC_to_ToF.jpg)
-
+![image](../images/lab3/QWIIC.jpg)
 
 ## Task 3: Gyroscope
 Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
