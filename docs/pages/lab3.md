@@ -85,6 +85,11 @@ Considering these factors, I believe Short mode is the most suitable option for 
 ## Task 6: Testing Short Mode
 To test the ToF)sensor in my chosen mode, Short Mode, I started by reviewing the `Example1_ReadDistance` sketch found in File->Examples->SparkFun_VL53L1X_4m_Laser_Distance_Sensor.
 
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/7iIOYe15L4s" title="Fast Robots Lab 3: Testing ToF" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
 I then modified this example to create a new command that sends the ToF distance data along with the time difference to my computer, allowing the data to be plotted in Jupyter Notebook for further analysis.
 ```c
 case SEND_ONE_TOF:  {
@@ -134,9 +139,25 @@ case SEND_ONE_TOF:  {
     break;
 }
 ```
+Subsequently, I used a testing methodology where I measured the actual distance using a measuring tape and tested the ToF sensor in 10 mm increments. At each increment, I collected 20 data points and later analyzed the data for ToF sensor range, accuracy, repeatability, and ranging time.
+
+### ToF Range and Accuracy
 ![image](../images/lab3/range.png)
+
+The mean values collected by the ToF sensor closely match the ideal values. The error analysis indicates that the accuracy is within expected ranges, neither accurate at close distances nor accurate at longer ranges.
+
+### Repeatability
+
+Since reliability implies that the sensor's readings are consistent, I analyzed the mean value at each distance and examined the corresponding standard deviation. 
+
 ![image](../images/lab3/reliability.png)
 
+Based on the graph, the sensor behaves as expected, showing low deviation at distances below ~1.3 meters and a higher standard deviation beyond that range.
+
+### Ranging Time
+I determined the ranging time by recording the time before and after each sensor reading and calculating the difference. I then computed the mean of these values. The average ranging time I found was approximately 342 µs.
+
+## Task 6: 2 ToF Sensors
 
 ## Discussion
 This lab highlighted the importance of managing data transmission when implementing the complementary filter, as sending excessive data can cause BLE communication to crash. Understanding this limitation will be crucial for optimizing data handling in future labs.
