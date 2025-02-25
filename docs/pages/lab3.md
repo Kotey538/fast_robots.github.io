@@ -70,7 +70,9 @@ This is the result.
 
 ## Task 3: I2C Address Scanning
 
-![image](../images/lab3/i2c_address.PNG)
+<div style="text-align: center;">
+  <img src="../images/lab3/i2c_address.PNG" alt="Description" width="400">
+</div>
 
 Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
 
