@@ -54,7 +54,7 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 ![image](../images/lab3/QWIIC_to_ToF.jpg)
 <div style="text-align: center;">
-  <img src="../images/lab3/QWIIC.jpg" alt="Description" width="400" height="300">
+  <img src="../images/lab3/QWIIC.jpg" alt="Description" width="600">
 </div>
 
 
