@@ -161,13 +161,14 @@ Based on the graph, the sensor behaves as expected, showing low deviation at dis
 I determined the ranging time by recording the time before and after each sensor reading and calculating the difference. I then computed the mean of these values. The average ranging time I found was approximately 342 µs.
 
 ## Task 6: 2 ToF Sensors
+To use two ToF sensors, I followed a similar approach to using a single sensor by connecting one with a long QWIIC cable. However, unlike the single-sensor setup, I needed to connect the shutdown pin on the ToF sensors to  the Artemis. This allowed me to temporarily disable one sensor while I assigned a unique I2C address to the other, ensuring that both sensors could operate simultaneously without address conflicts.
 ![image](../images/lab3/2.jpg)
 
 ![image](../images/lab3/new_address.PNG)
 
 
 ## Discussion
-This lab highlighted the importance of managing data transmission when implementing the complementary filter, as sending excessive data can cause BLE communication to crash. Understanding this limitation will be crucial for optimizing data handling in future labs.
+
 
 * * *
 
