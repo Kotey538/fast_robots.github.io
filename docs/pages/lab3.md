@@ -70,8 +70,9 @@ This is the result.
 
 ## Task 3: Scanning for the I2C Address
 To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketch located in File->Examples->Apollo3. Below are the results from running this code in the serial monitor.
-<br>
+
 ![image](../images/lab3/i2c_address.PNG)
+
 The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b1010010 (0x52) → 0b0101001 (0x29)`.
 
 ## Task 5: Stunts
