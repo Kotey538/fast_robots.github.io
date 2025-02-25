@@ -46,7 +46,7 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 ## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
 <div style="text-align: center;">
-  <img src="../images/lab3/install.PNG" alt="Description" width="400">
+  <img src="../images/lab3/install.PNG" alt="Description" width="200">
 </div>
 
 
@@ -150,7 +150,10 @@ The mean values collected by the ToF sensor closely match the ideal values. The 
 
 Since reliability implies that the sensor's readings are consistent, I analyzed the mean value at each distance and examined the corresponding standard deviation. 
 
-![image](../images/lab3/reliability.png)
+<div style="text-align: center;">
+  <img src="../images/lab3/reliability.png" alt="Description" width="400">
+</div>
+
 
 Based on the graph, the sensor behaves as expected, showing low deviation at distances below ~1.3 meters and a higher standard deviation beyond that range.
 
