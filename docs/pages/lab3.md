@@ -34,40 +34,9 @@ However, this configuration introduces a blind spot along the sides of the car. 
 ![image](../images/lab3/battery.jpg)
 
 
-## Task 2: Accelerometer
-This task primarily involved obtaining pitch and roll values using an accelerometer. Since an accelerometer measures translational acceleration, it was necessary to apply geometric equations to convert this data into the corresponding rotational values for pitch and roll.
+## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
+![image](../images/lab2/install.PNG)
 
-```c
-pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
-roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
-```
-I then test this code by showing the output at {-90, 0, 90} degrees pitch and roll by holding the IMU in various ways against a table.
-
-<div style="display: flex; justify-content: center;">
-  <img src="../images/lab2/Pitch_A.png" alt="Pitch" width="45%">
-  <img src="../images/lab2/Roll_A.png" alt="Roll" width="45%">
-</div>
-<br>
-
-From the graphs, it is evident that the accelerometer output is highly accurate, making a two-point calibration unnecessary. However, the data also exhibits significant noise, which can be mitigated using a low-pass filter. Utilizing Skyfi’s FFT, a cutoff frequency of 5 Hz was selected. 
-
-![image](../images/lab2/time_domain.png)
-![image](../images/lab2/freq_domain.png)
-
-With a sampling period of 2.56 ms, the corresponding filter coefficient (α) was calculated to be 0.0746
-
-```c
-pitch_LPF[n] = alpha*pitch_data[i] + (1-alpha)*pitch_LPF[n-1];
-pitch_LPF[n-1] = pitch_LPF[n];
-roll_LPF[n] = alpha*roll_data[i]+ (1-alpha)*roll_LPF[n-1];
-roll_LPF[n-1] = roll_LPF[n];
-```
-
-![image](../images/lab2/accel_lpf.png)
-
-![image](../images/lab2/accel_n_gyro.png)
-
-One graph represents the IMU placed on a flat surface with no pitch or roll, while the other captures random rotations applied to the IMU. The results demonstrate that the selected cutoff frequency effectively attenuates noise, producing a clearer and more stable signal.
 
 ## Task 3: Gyroscope
 Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
