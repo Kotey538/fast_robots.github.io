@@ -30,6 +30,9 @@ However, this configuration introduces a blind spot along the sides of the car. 
 ![image](../images/lab3/Wiring_Diagram.svg)
 
 ## Task 1: Battery Powering the Artemis
+Since the RedBoard Artemis Nano will be mounted on the RC car, it requires an independent power source, as it cannot remain connected to my laptop during operation. To power the Artemis, I modified a 650mAh battery using a JST connector.
+
+To make this modification, I carefully cut the battery wires one at a time to avoid short-circuiting. After identifying the power and ground connections on the JST connector (with ground as the red wire and power as the black wire in my case), I stripped the wires, slid on heat shrink tubing, and soldered the connections. Finally, I heated the tubing to insulate the exposed wires, completing the power supply setup for the Artemis.
 
 ![image](../images/lab3/battery.jpg)
 
