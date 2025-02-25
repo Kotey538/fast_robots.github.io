@@ -9,7 +9,6 @@ In this lab, I integrated two [VL53L1X Time-of-Flight (ToF)](https://www.pololu.
 
 * * *
 
-
 ## Prelab
 
 ### Default I2C Address
@@ -75,19 +74,13 @@ To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketc
 
 The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b01010010 (0x52) → 0b00101001 (0x29)`.
 
-## Task 5: Stunts
-The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/CIH7MHozu34" title="Fast Robots Lab 2: RC Car Stunts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
+## Task 4: ToF Sensor Mode
+
 
 Controlling the RC car with the remote was challenging and imprecise, highlighting the necessity of implementing autonomous control for improved stability and maneuverability.
 
 ## Discussion
 This lab highlighted the importance of managing data transmission when implementing the complementary filter, as sending excessive data can cause BLE communication to crash. Understanding this limitation will be crucial for optimizing data handling in future labs.
-* * *
-
 
 * * *
 
