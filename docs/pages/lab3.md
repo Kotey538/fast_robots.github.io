@@ -50,8 +50,14 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 
 ## Task 2: QWIIC Connections
+To connect multiple sensors, I used the QWIIC connector on the Artemis. Since simultaneous connections were needed, I incorporated a QWIIC MultiPort and linked it to the Artemis with a short QWIIC cable.
 ![image](../images/lab3/QWIIC_to_Artemis.jpg)
 
+Afterward, I removed the JST connector from one end of the long QWIIC cable and soldered the corresponding wires to the ToF sensor following the [documentation](https://www.sparkfun.com/qwiic).
+![image](../images/lab3/QWIIC_Doc.jpg)
+
+
+This is the result.
 ![image](../images/lab3/QWIIC_to_ToF.jpg)
 <div style="text-align: center;">
   <img src="../images/lab3/QWIIC.jpg" alt="Description" width="400">
