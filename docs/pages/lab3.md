@@ -35,7 +35,7 @@ However, this configuration introduces a blind spot along the sides of the car. 
 
 
 ## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
-![image](../images/lab2/install.PNG)
+![image](../images/lab3/install.PNG)
 
 
 ## Task 3: Gyroscope
