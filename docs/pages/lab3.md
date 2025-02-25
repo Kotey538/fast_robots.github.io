@@ -83,6 +83,57 @@ The ToF sensor offers three distinct modes. Short mode provides the fastest resp
 Considering these factors, I believe Short mode is the most suitable option for the final robot, as its rapid response enables the Artemis to quickly receive sensor data, while its reliability under various lighting conditions ensures consistent performance.
 
 ## Task 6: Testing Short Mode
+To test the ToF)sensor in my chosen mode, Short Mode, I started by reviewing the `Example1_ReadDistance` sketch found in File->Examples->SparkFun_VL53L1X_4m_Laser_Distance_Sensor.
+
+I then modified this example to create a new command that sends the ToF distance data along with the time difference to my computer, allowing the data to be plotted in Jupyter Notebook for further analysis.
+```c
+case SEND_ONE_TOF:  {
+
+    memset(start_time_data, 0, sizeof(start_time_data));
+    memset(end_time_data, 0, sizeof(end_time_data));
+    memset(time_diff_data, 0, sizeof(time_diff_data));
+    memset(distance_data, 0, sizeof(distance_data));
+    int i = 0;
+
+    unsigned long start_time = millis(); 
+
+    distanceSensor.setDistanceModeShort();
+    while ((millis() - start_time < 5000) && (i < array_size) && (i < 20)) {
+
+        distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+        while (!distanceSensor.checkForDataReady())
+        {
+          delay(1);
+        }
+        start_time_data[i] = (int) micros();
+        distance_data[i] = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
+        end_time_data[i] = (int) micros();
+        distanceSensor.clearInterrupt();
+        distanceSensor.stopRanging();
+        time_diff_data[i] = end_time_data[i]-start_time_data[i];
+        i++;
+
+    }
+
+    //Send back the array
+    for (int j = 0; j < array_size; j++) {
+
+      if (start_time_data[j] != 0) {
+
+        tx_estring_value.clear();
+        tx_estring_value.append("Time_diff:");
+        tx_estring_value.append(time_diff_data[j]);
+        tx_estring_value.append(", Distance:");
+        tx_estring_value.append(distance_data[j]);
+        tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+      } else break;
+
+    }
+
+    break;
+}
+```
 ![image](../images/lab3/range.png)
 ![image](../images/lab3/reliability.png)
 
