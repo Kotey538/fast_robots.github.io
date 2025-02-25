@@ -73,7 +73,7 @@ To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketc
 
 ![image](../images/lab3/i2c_address.PNG)
 
-The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b1010010 (0x52) → 0b0101001 (0x29)`.
+The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b01010010 (0x52) → 0b00101001 (0x29)`.
 
 ## Task 5: Stunts
 The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
