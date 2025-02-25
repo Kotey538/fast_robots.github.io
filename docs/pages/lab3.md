@@ -83,8 +83,8 @@ The ToF sensor offers three distinct modes. Short mode provides the fastest resp
 Considering these factors, I believe Short mode is the most suitable option for the final robot, as its rapid response enables the Artemis to quickly receive sensor data, while its reliability under various lighting conditions ensures consistent performance.
 
 ## Task 6: Testing Short Mode
-![image](../images/lab3/range.PNG)
-![image](../images/lab3/reliability.PNG)
+![image](../images/lab3/range.png)
+![image](../images/lab3/reliability.png)
 
 
 ## Discussion
