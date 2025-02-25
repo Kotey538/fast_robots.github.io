@@ -144,7 +144,7 @@ Subsequently, I used a testing methodology where I measured the actual distance 
 ![image](../images/lab3/setup.jpg)
 
 ### ToF Range and Accuracy
-![image](../images/lab3/range.PNG)
+![image](../images/lab3/range.png)
 
 The mean values collected by the ToF sensor closely match the ideal values. The error analysis indicates that the accuracy is within expected ranges, neither accurate at close distances nor accurate at longer ranges.
 
