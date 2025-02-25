@@ -36,6 +36,14 @@ To make this modification, I carefully cut the battery wires one at a time to av
 
 ![image](../images/lab3/battery.jpg)
 
+After setting up the power source, I tested it by powering the Artemis solely with the battery, connecting via Bluetooth, and continuously retrieving timestamps using the `LOOP_GET_TIME_MILLIS` function from Lab 1.
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/rcFw6Q3UXPY" title="Fast Robots Lab 3: Connecting to Bluetooth Wirelessly" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
+
 
 ## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
 ![image](../images/lab3/install.PNG)
