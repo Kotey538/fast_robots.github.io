@@ -54,7 +54,7 @@ To connect multiple sensors, I used the QWIIC connector on the Artemis. Since si
 ![image](../images/lab3/QWIIC_to_Artemis.jpg)
 
 Afterward, I removed the JST connector from one end of the long QWIIC cable and soldered the corresponding wires to the ToF sensor following the [documentation](https://www.sparkfun.com/qwiic).
-![image](../images/lab3/QWIIC_Doc.jpg)
+![image](../images/lab3/QWIIC_Doc.PNG)
 
 
 This is the result.
