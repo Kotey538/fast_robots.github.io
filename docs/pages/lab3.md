@@ -69,31 +69,8 @@ This is the result.
 
 
 ## Task 3: I2C Address Scanning
+![image](../images/lab3/i2c_address.PNG)
 
-<div style="text-align: center;">
-  <img src="../images/lab3/i2c_address.PNG" alt="Description" width="400">
-</div>
-
-Similar to the accelerometer, the gyroscope's sensor data must be processed to obtain roll, pitch, and yaw values. In this case, the gyroscope measures angular velocity, requiring numerical integration to compute the corresponding angles over time.
-
-```c
-dt = (micros()-last_time)/1000000.;
-last_time = micros(); 
-pitch_gyro[n] = pitch_gyro[n-1] + myICM.gyrX()*dt;
-roll_gyro[n] =  roll_gyro[n-1] + myICM.gyrY()*dt;
-yaw_gyro[n] =  yaw_gyro[n-1] + myICM.gyrZ()*dt;
-```
-Next, I tested the gyroscope output while keeping roll, pitch, and yaw fixed at zero to view baseline sensor readings
-
-![image](../images/lab2/accel_n_gyro.png)
-
-Observing the gyroscope data reveals two key insights: first, the gyroscope's output exhibits less noise compared to the accelerometer; second, the gyroscope experiences accumulating error (drift), causing its readings to become less accurate over time. Subsequently, I introduced a delay to reduce the sampling rate and analyzed its impact on the gyroscope's output. This allowed for an evaluation of how different sampling frequencies affect data accuracy and drift over time.
-
-![image](../images/lab2/46.png)
-
-The graph indicates that decreasing the sampling rate leads to a noisier signal and an increase in drift, reducing the overall accuracy of the gyroscope's output.
-
-![image](../images/lab2/Accuracy.png)
 
 ## Task 5: Stunts
 The final task of the lab involved performing a stunt with the RC car to evaluate its capabilities. For this, I executed a series of flips.
