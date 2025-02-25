@@ -141,7 +141,7 @@ case SEND_ONE_TOF:  {
 ```
 Subsequently, I used a testing methodology where I measured the actual distance using a measuring tape and tested the ToF sensor in 10 mm increments. At each increment, I collected 20 data points and later analyzed the data for ToF sensor range, accuracy, repeatability, and ranging time.
 
-![image](../images/lab3/setup.png)
+![image](../images/lab3/setup.jpg)
 
 ### ToF Range and Accuracy
 ![image](../images/lab3/range.PNG)
