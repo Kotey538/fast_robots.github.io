@@ -68,7 +68,8 @@ This is the result.
 </div>
 
 
-## Task 3: I2C Address Scanning
+## Task 3: Scanning for the I2C Address
+To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketch located in File->Examples->Apollo3. Below are the results from running this code in the serial monitor.
 ![image](../images/lab3/i2c_address.PNG)
 
 
