@@ -163,7 +163,7 @@ I determined the ranging time by recording the time before and after each sensor
 ## Task 6: 2 ToF Sensors
 ![image](../images/lab3/2.jpg)
 
-![image](../images/lab3/new_address.png)
+![image](../images/lab3/new_address.PNG)
 
 
 ## Discussion
