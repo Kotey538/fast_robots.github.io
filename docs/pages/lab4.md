@@ -1,32 +1,19 @@
 ---
 title: "MAE 4910 Fast Robots"
-description: "Lab 3: ToF Sensors"
+description: "Lab 4: Motors and Open Loop Control"
 layout: default
 ---
 
-# Lab 3: ToF Sensors
-In this lab, I integrated two [VL53L1X Time-of-Flight (ToF)](https://www.pololu.com/product/3415) sensors with the SparkFun RedBoard Artemis Nano and evaluated the sensors' range, accuracy, repeatability, and timing performance, selecting the optimal distance mode for future obstacle detection applications. Finally, I modified previous code to log synchronized, time-stamped ToF and IMU data, transmitting it over Bluetooth and generating plots to analyze sensor outputs over time.
+# Lab 4: Motors and Open Loop Control
+
 
 * * *
 
 ## Prelab
 
-### Default I2C Address
-As per the [datasheet](https://cdn.sparkfun.com/assets/8/9/9/a/6/VL53L0X_DS.pdf), the default I2C address of the VL53L1X Tof sensor is is 0x52.
-![image](../images/lab3/manual.png)
-
-### Using 2 ToF Sensors
-Since both ToF sensors share the same default I2C address, they cannot be individually addressed without modification. There are two main approaches to resolve this issue: changing the I2C address programmatically or continuously enabling and disabling the sensors using their shutdown (`XSHUT`) pins. 
-
-I chose to change the I2C address programmatically because it allows both sensors to provide data simultaneously, improving efficiency and enabling real-time obstacle detection. To implement this, I will use the `XSHUT` pin on one of the sensors to temporarily disable it while I change the I2C address of the other. Once the address is updated, I will re-enable the disabled sensor, ensuring both sensors can operate concurrently with unique addresses on the same I2C bus.
-
-### Ssensor Placement
-I intend to place the ToF sensors on the front and back of the RC car. In most cases, the car will either need to detect an obstacle in front as it moves forward or detect an obstacle behind it while reversing. An additional consideration is that the car can flip and move in reverse, causing the "front" and "back" orientations to interchange. Placing sensors on both ends ensures consistent obstacle detection regardless of the car's orientation or direction of movement.
-
-However, this configuration introduces a blind spot along the sides of the car. For example, if the car were moving nearly parallel to a wall but approaching it at a slight angle, the ToF sensors would be unable to detect the wall.
 
 ### Wiring Diagram
-![image](../images/lab3/Wiring_Diagram.svg)
+![image](../images/lab4/Wiring_Diagram2.svg)
 
 ## Task 1: Battery Powering the Artemis
 Since the RedBoard Artemis Nano will be mounted on the RC car, it requires an independent power source, as it cannot remain connected to my laptop during operation. To power the Artemis, I modified a 650mAh battery using a JST connector.
