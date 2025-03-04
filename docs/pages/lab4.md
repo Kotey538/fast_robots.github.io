@@ -63,12 +63,53 @@ In order to modify the RC car to my specifications, I began by disassembling it 
 
 
 
-## Task 4: Scanning for the I2C Address
-To scan the I2C address of the ToF sensor, I used the `Example05_Wire_I2C` sketch located in File->Examples->Apollo3. Below are the results from running this code in the serial monitor.
+## Task 4: Motor Driving the First Set of Wheels
 
-![image](../images/lab3/i2c_address.PNG)
+After verifying the motor driver’s functionality with the oscilloscope, transitioning to using it to drive the motor was straightforward. I followed the wiring diagram and connected the outputs to the respective positive and negative leads of the motor.
 
-The datasheet indicates that the default address of the ToF sensor is 0x52. However, the I2C scan returned an address of 0x29. This discrepancy occurs because the least significant bit (LSB) of the address packet is reserved for indicating the read/write operation in the I2C protocol and is not part of the actual device address. The I2C scan omits this LSB, effectively performing a right shift of the address: `0b01010010 (0x52) → 0b00101001 (0x29)`.
+![image](../images/lab4/Connect_Motor.jpg)
+
+The next step involved developing the code shown below to drive the wheels in both clockwise and counterclockwise directions.
+
+```c
+#define PWM_0 0
+#define PWM_1 1
+
+void setup() {
+  pinMode(PWM_0, OUTPUT);
+  pinMode(PWM_1, OUTPUT);
+}
+
+void loop() {
+  // Drive motor clockwise:
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 128);
+  delay(5000);  // Run for 5 seconds
+
+  // Stop motor:
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 0);
+  delay(5000);  // Pause for 5 seconds
+
+  // Drive motor counterclockwise:
+  analogWrite(PWM_0, 128);
+  analogWrite(PWM_1, 0);
+  delay(5000);  // Run for 5 seconds
+
+  // Stop motor:
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 0);
+  delay(5000);  // Pause for 5 seconds
+}
+```
+
+The result is the following demonstration of the wheels spinning, powered still by the 3.7 V from the external power supply.
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/-27KpS0vo1k" title="Fast Robots Lab 4: Spinning First Set of Wheels" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
 
 ## Task 5: ToF Sensor Mode
 The ToF sensor offers three distinct modes. Short mode provides the fastest response, with a maximum range of 1.3 meters and high immunity to ambient light, but its limited range might cause it to miss distant obstacles. Medium mode extends the range to 3 meters but has a slower response and higher sensitivity to ambient light. Long mode reaches up to 4 meters, with the slowest response time and greatest susceptibility to ambient light.
