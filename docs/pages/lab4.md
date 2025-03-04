@@ -57,6 +57,7 @@ This is the result on the oscilloscope.
 
 ## Task 3: Disassemble RC Car
 
+In order to modify the RC car to my specifications, I began by disassembling it and removing most of the original components. I carefully removed all the screws, storing them securely, and then detached the outer blue shell. Once opened, I found a PCB populated with connected LEDs and wires. I removed the PCB by cutting the wires as close as possible to preserve their maximum length for future use. With these components removed, I was left with a blank canvas with which to work.
 
 ![image](../images/lab4/Disassembled.jpg)
 
