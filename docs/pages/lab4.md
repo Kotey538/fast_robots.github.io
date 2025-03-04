@@ -15,12 +15,10 @@ layout: default
 ### Wiring Diagram
 ![image](../images/lab4/Wiring_Diagram2.svg)
 
-## Task 1: Battery Powering the Artemis
-Since the RedBoard Artemis Nano will be mounted on the RC car, it requires an independent power source, as it cannot remain connected to my laptop during operation. To power the Artemis, I modified a 650mAh battery using a JST connector.
+## Task 1: Connect First Motor Driver
 
-To make this modification, I carefully cut the battery wires one at a time to avoid short-circuiting. After identifying the power and ground connections on the JST connector (with ground as the red wire and power as the black wire in my case), I stripped the wires, slid on heat shrink tubing, and soldered the connections. Finally, I heated the tubing to insulate the exposed wires, completing the power supply setup for the Artemis.
 
-![image](../images/lab3/battery.jpg)
+![image](../images/lab4/Connected_Driver.jpg)
 
 After setting up the power source, I tested it by powering the Artemis solely with the battery, connecting via Bluetooth, and continuously retrieving timestamps using the `LOOP_GET_TIME_MILLIS` function from Lab 1.
 
@@ -31,7 +29,7 @@ After setting up the power source, I tested it by powering the Artemis solely wi
 
 
 
-## Task 2: Install SparkFun VL53L1X 4m Laser Distance Sensor Library
+## Task 2: Generate PWM
 <div style="text-align: center;">
   <img src="../images/lab3/install.PNG" alt="Description" width="200">
 </div>
