@@ -13,8 +13,15 @@ I transitioned my RC car from manual control to open loop control by integrating
 ## Prelab
 
 
-### Wiring Diagram
+### Wiring Motor Drivers
+
+Having used digital pin 2 in the previous lab, I opted for digital pins 0, 1, 3, and 5 in this experiment since they all support PWM via the analogWrite function. I connected each of these pins to an input on the motor driver using parallel-coupling to deliver twice the average current without overheating the chip. Similarly, the outputs were parallelly coupled to the positive and negative terminals of each motor for the respective motor driver. Finally, I tied together the grounds of the 3.7 V batteries, the Artemis, and the motor drivers, and connected the VIN pins of both motor drivers to the positive terminal of one of the batteries.
+
 ![image](../images/lab4/Wiring_Diagram2.svg)
+
+### Battery Discussion
+
+I powered the Artemis and the motor drivers/motors from separate batteries because the motors draw high currents and create electrical noise that can disturb the sensitive electronics on the Artemis.
 
 ## Task 1: Connect First Motor Driver
 
