@@ -113,7 +113,7 @@ The result is the following demonstration of the wheels spinning, powered still 
 
 ## Task 5: Driving the First Set of Wheels Using Battery
 
-The only change from the previous task was replacing the external power supply with an 850mAh battery (3.7 V). To achieve this, I stripped the wire connected to the JST connector for the battery, as well as the VIN and GND out wires for the motor driver, and joined them using electrical tape instead of soldering. This approach was chosen to facilitate an easier extension to the other motor driver in the next task. This results in the below display.
+The only change from the previous task was replacing the external power supply with an 850mAh battery (3.7 V). To achieve this, I stripped the wire connected to the JST connector for the battery, as well as the VIN and GND wires for the motor driver, and joined them using electrical tape instead of soldering. This approach was chosen to facilitate an easier extension to the other motor driver in the next task. This results in the below display.
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/5xSblaG7KSk" title="Fast Robots Lab 4: Battery Powered" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -122,10 +122,19 @@ The only change from the previous task was replacing the external power supply w
 
 ## Task 6: Driving the Both Set of Wheels
 
+
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/uuTsKM4Io_w" title="Fast Robots Lab 4: Both Motor Drivers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
+
+Task 7: Assemble RC Car
+
+Task 8: Lower Limit PWM Value
+
+Task 9: Calibration Factor
+
+Task 9: Open Loop Demonstration
 
 ## Discussion
 
