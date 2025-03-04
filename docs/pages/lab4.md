@@ -14,7 +14,7 @@ I transitioned my RC car from manual control to open loop control by integrating
 
 ### Wiring Motor Drivers
 
-Having used digital pin 2 in the previous lab, I opted for digital pins 0, 1, 3, and 5 in this experiment since they all support PWM via the analogWrite function. I connected each of these pins to an input on the motor driver using parallel-coupling to deliver twice the average current without overheating the chip. Similarly, the outputs were parallelly coupled to the positive and negative terminals of each motor for the respective motor driver. Finally, I tied together the grounds of the 3.7 V batteries, the Artemis, and the motor drivers, and connected the VIN pins of both motor drivers to the positive terminal of one of the batteries.
+Having used digital pin 2 in the previous lab, I opted for digital pins 0, 1, 3, and 5 in this experiment since they all support PWM via the `analogWrite function`. I connected each of these pins to an input on the motor driver using parallel-coupling to deliver twice the average current without overheating the chip. Similarly, the outputs were parallelly coupled to the positive and negative terminals of each motor for the respective motor driver. Finally, I tied together the grounds of the 3.7 V batteries, the Artemis, and the motor drivers, and connected the VIN pins of both motor drivers to the positive terminal of one of the batteries.
 
 ![image](../images/lab4/Wiring_Diagram2.svg)
 
@@ -257,7 +257,7 @@ I found that a PWM value of approximately 45 is the minimum threshold for the ca
 
 ## Task 9: Calibration Factor
 
-Calibrating with the SEND_PWM_VALUE command, I discovered that setting the right motor to 98 and the left motor to 128 produces a relatively straight line. This indicates a calibration factor of approximately 1.31 from right to left and, conversely, about 0.77 from left to right.
+Calibrating with the `SEND_PWM_VALUE` command, I discovered that setting the right motor to 98 and the left motor to 128 produces a relatively straight line. This indicates a calibration factor of approximately 1.31 from right to left and, conversely, about 0.77 from left to right.
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" ssrc="https://www.youtube.com/embed/yg1teTwbYVY" title="Fast Robots Lab 4: Straight Line" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -320,5 +320,5 @@ This lab taught me the importance of precise wiring when working with microcontr
 * * *
 
 # Acknowledgements
-*   I referenced Stephan Wagner page.
+*   I referenced Stephan Wagner's page.
 
