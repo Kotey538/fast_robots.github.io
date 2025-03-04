@@ -122,6 +122,51 @@ The only change from the previous task was replacing the external power supply w
 
 ## Task 6: Driving the Both Set of Wheels
 
+To drive both sets of wheels, I connected the outputs of the second motor driver to the second motor and soldered the VIN and GND connections of both motor drivers to the battery's JST connector. I then used the updated code below to run both sets of wheels.
+
+```c
+#define PWM_0 0
+#define PWM_1 1
+#define PWM_3 3
+#define PWM_5 5
+
+void setup() {
+    pinMode(PWM_0, OUTPUT);
+    pinMode(PWM_1, OUTPUT);
+    pinMode(PWM_3, OUTPUT);
+    pinMode(PWM_5, OUTPUT);
+}
+
+void loop() {
+
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 128);
+  analogWrite(PWM_3, 0);
+  analogWrite(PWM_5, 128);
+  delay(5000);
+
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 0);
+  analogWrite(PWM_3, 0);
+  analogWrite(PWM_5, 0);
+  delay(5000);
+
+
+  analogWrite(PWM_0, 128);
+  analogWrite(PWM_1, 0);
+  analogWrite(PWM_3, 128);
+  analogWrite(PWM_5, 0);
+  delay(5000);
+
+  analogWrite(PWM_0, 0);
+  analogWrite(PWM_1, 0);
+  analogWrite(PWM_3, 0);
+  analogWrite(PWM_5, 0);
+  delay(5000);
+
+}
+
+```
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/uuTsKM4Io_w" title="Fast Robots Lab 4: Both Motor Drivers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
