@@ -6,6 +6,7 @@ layout: default
 
 # Lab 4: Motors and Open Loop Control
 
+I transitioned my RC car from manual control to open loop control by integrating a SparkFun RedBoard Artemis Nano with dual motor drivers.
 
 * * *
 
