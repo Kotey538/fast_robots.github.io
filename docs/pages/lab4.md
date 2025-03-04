@@ -315,9 +315,10 @@ case OPEN_LOOP:  {
 
 ## Discussion
 
+This lab taught me the importance of precise wiring when working with microcontrollers. The lab provided valuable hands-on experience in motor control and system calibration, laying the groundwork for future closed-loop control enhancements.
 
 * * *
 
 # Acknowledgements
-*   I referenced Nila Narayan and Stephan Wagner’s pages.
+*   I referenced Stephan Wagner page.
 
