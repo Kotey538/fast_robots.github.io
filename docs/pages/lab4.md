@@ -178,7 +178,6 @@ The result is the following demonstration of the of all the wheels spinning, pow
 Task 7: Assemble RC Car
 ![image](../images/lab4/Top_View.jpg)
 ![image](../images/lab4/Bottom_View.jpg)
-![image](../images/lab4/Connect_Mot.jpg)
 ![image](../images/lab4/ToF1.jpg)
 ![image](../images/lab4/Tof2.jpg)
 ![image](../images/lab4/Drill.jpg)
