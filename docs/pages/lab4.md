@@ -257,7 +257,55 @@ I found that a PWM value of approximately 45 is the minimum threshold for the ca
 
 ## Task 9: Calibration Factor
 
+Calibrating with the SEND_PWM_VALUE command, I discovered that setting the right motor to 98 and the left motor to 128 produces a relatively straight line. This indicates a calibration factor of approximately 1.31 from right to left and, conversely, about 0.77 from left to right.
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" ssrc="https://www.youtube.com/embed/yg1teTwbYVY" title="Fast Robots Lab 4: Straight Line" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
 ## Task 10: Open Loop Demonstration
+I finally developed an open-loop command to evaluate the overall performance of my RC car by driving it straight and executing turns.
+
+```c
+case OPEN_LOOP:  {
+
+    analogWrite(PWM_0, 70);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 70);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 128);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 128);
+    analogWrite(PWM_5, 0);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 128);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 70);
+    analogWrite(PWM_5, 0);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 128);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 128);
+    analogWrite(PWM_5, 0);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    break;
+}
+```
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/1ldJYZjIpd8" title="Fast Robots Lab 4: Open Loop Control" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
