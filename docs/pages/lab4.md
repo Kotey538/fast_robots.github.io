@@ -12,7 +12,6 @@ I transitioned my RC car from manual control to open loop control by integrating
 
 ## Prelab
 
-
 ### Wiring Motor Drivers
 
 Having used digital pin 2 in the previous lab, I opted for digital pins 0, 1, 3, and 5 in this experiment since they all support PWM via the analogWrite function. I connected each of these pins to an input on the motor driver using parallel-coupling to deliver twice the average current without overheating the chip. Similarly, the outputs were parallelly coupled to the positive and negative terminals of each motor for the respective motor driver. Finally, I tied together the grounds of the 3.7 V batteries, the Artemis, and the motor drivers, and connected the VIN pins of both motor drivers to the positive terminal of one of the batteries.
@@ -25,12 +24,32 @@ I powered the Artemis and the motor drivers/motors from separate batteries becau
 
 ## Task 1: Connect First Motor Driver
 
+Following the wiring diagram I created, I connected the first motor driver to pins 0 and 1 on the Artemis and tied the grounds of the Artemis and the motor driver together.
 
 ![image](../images/lab4/Connected_Driver.jpg)
 
-
-
 ## Task 2: Generate PWM
+
+To verify the functionality of the motor driver before integrating it into the RC car, I used a power supply to deliver 3.7 volts through the VIN pin as it replicates the battery's voltage. I then measured the output from pin 0 using an oscilloscope and the code below.
+
+```c
+#define PWM_0 5
+
+int i = 0;
+
+void setup() {
+    pinMode(PWM_0, OUTPUT);
+    analogWrite(PWM_0, 0);
+}
+
+void loop() {                             
+    analogWrite(PWM_0, i);
+    delay(100);
+    i = (i + 10) % 255;
+}
+```
+This is the result on the oscilloscope.
+
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/5iewHeBsERo" title="Fast Robots Lab 4: PWM Signal on an Oscilloscope" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
