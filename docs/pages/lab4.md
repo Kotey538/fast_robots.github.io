@@ -175,18 +175,50 @@ The result is the following demonstration of the of all the wheels spinning, pow
 </div>
 <br>
 
-Task 7: Assemble RC Car
+## Task 7: Assemble RC Car
 ![image](../images/lab4/Top_View.jpg)
 ![image](../images/lab4/Bottom_View.jpg)
 ![image](../images/lab4/ToF1.jpg)
 ![image](../images/lab4/Tof2.jpg)
 ![image](../images/lab4/Drill.jpg)
 
-Task 8: Lower Limit PWM Value
+I then created a Bluetooth command to remotely control the car, providing a convenient way to test its driving performance.
 
-Task 9: Calibration Factor
+```c
+ case DRIVE_TEST:  {
 
-Task 9: Open Loop Demonstration
+    analogWrite(PWM_0, 128);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 128);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    break;
+}
+```
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/IydGWFwS68A" title="Fast Robots Lab 4: Driving RC Car" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
+## Task 8: Lower Limit PWM Value
+
+## Task 9: Calibration Factor
+
+## Task 10: Open Loop Demonstration
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/1ldJYZjIpd8" title="Fast Robots Lab 4: Open Loop Control" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
 
 ## Discussion
 
