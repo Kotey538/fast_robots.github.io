@@ -210,6 +210,51 @@ I then created a Bluetooth command to remotely control the car, providing a conv
 
 ## Task 8: Lower Limit PWM Value
 
+To test the lower limit of the PWM values, I developed a new Bluetooth command that sends the desired PWM values to each pin using the analogWrite() function.
+
+```c
+ case SEND_PWM_VALUE:  {
+    
+    int pwm_a, pwm_b, pwm_c, pwm_d;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(pwm_a);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(pwm_b);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(pwm_c);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(pwm_d);
+    if (!success)
+        return;
+
+    analogWrite(PWM_0, pwm_a);
+    analogWrite(PWM_1, pwm_c);
+    analogWrite(PWM_3, pwm_d);
+    analogWrite(PWM_5, pwm_b);
+    delay(3000);
+
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    break;
+}
+```
+
+I found that a PWM value of approximately 45 is the minimum threshold for the car to start moving forward, while a value of 120 is required for it to begin turning on its axis.
+
 ## Task 9: Calibration Factor
 
 ## Task 10: Open Loop Demonstration
