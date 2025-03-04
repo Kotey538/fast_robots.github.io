@@ -20,21 +20,13 @@ layout: default
 
 ![image](../images/lab4/Connected_Driver.jpg)
 
-After setting up the power source, I tested it by powering the Artemis solely with the battery, connecting via Bluetooth, and continuously retrieving timestamps using the `LOOP_GET_TIME_MILLIS` function from Lab 1.
-
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/rcFw6Q3UXPY" title="Fast Robots Lab 3: Connecting to Bluetooth Wirelessly" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
-
 
 
 ## Task 2: Generate PWM
-<div style="text-align: center;">
-  <img src="../images/lab3/install.PNG" alt="Description" width="200">
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/5iewHeBsERo" title="Fast Robots Lab 4: PWM Signal on an Oscilloscope" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-
-
+<br>
 
 ## Task 3: QWIIC Connections
 To connect multiple sensors, I used the QWIIC connector on the Artemis. Since simultaneous connections were needed, I incorporated a QWIIC MultiPort and linked it to the Artemis with a short QWIIC cable.
