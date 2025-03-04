@@ -33,7 +33,7 @@ Following the wiring diagram I created, I connected the first motor driver to pi
 To verify the functionality of the motor driver before integrating it into the RC car, I used a power supply to deliver 3.7 volts through the VIN pin as it replicates the battery's voltage. I then measured the output from pin 0 using an oscilloscope and the code below.
 
 ```c
-#define PWM_0 5
+#define PWM_0 0
 
 int i = 0;
 
