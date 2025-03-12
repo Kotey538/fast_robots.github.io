@@ -141,11 +141,11 @@ setup()
 
 Generally, a  PID controller combines proportional, integral, and derivative control terms to generate a new control input through a feedback loop. Each term contributes differently: the proportional term reacts to the current error, the integral term accounts for accumulated past errors, and the derivative term predicts future error trends.
 
-![image](../images/lab5/PID_formula.png)
+![image](../images/lab5/PID_formula.PNG)
 
 The proportional controller that I would be trying to create would only incorporate the proportional term. 
 
-![image](../images/lab5/P_formula.png)
+![image](../images/lab5/P_formula.PNG)
 
 A key drawback of a proportional controller is that it cannot fully eliminate the error between the setpoint and the actual value, as it always requires a nonzero error to generate a control effort. 
 This results in a steady-state error where the system settles close to, but not exactly at, the desired target.
