@@ -38,6 +38,88 @@ void motor_control(float control_input){
           
 }
 ```
+For Lab 5, I decided to implement the simplest form of control, a proportional controller, before expanding to more advanced techniques. To enable easy tuning without reprogramming, I created a Bluetooth command P, which allowed me to set an initial control input, adjust the proportional gain K_p, and specify a target distance. The function first applied motor_control using the initial input and then continuously updated control inputs based on the error, calculated as the difference between the measured distance from the ToF sensor and the target, multiplied by K_p. At the end of the run, I stopped the motors and transmitted the logged data including timestamps, measured distances, and control values back to the computer via Bluetooth for analysis and debugging.
+
+```c
+case P:  {
+    
+    float u_0, K_p;
+    int target;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(u_0);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(K_p);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(target);
+    if (!success)
+        return;
+
+    motor_control(u_0);
+
+    memset(time_data, 0, sizeof(time_data));
+    memset(distance_data, 0, sizeof(distance_data));
+    memset(u, 0, sizeof(u));
+
+    int i = 0;
+
+    unsigned long start_time = millis(); 
+
+    distanceSensor.setDistanceModeShort();
+    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+
+    while ((millis() - start_time < 5000) && (i < array_size)) {      
+        
+        if (distanceSensor.checkForDataReady())
+        {
+          time_data[i] = (int) millis();
+          distance_data[i] = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
+          distanceSensor.clearInterrupt();
+          distanceSensor.stopRanging();
+          distanceSensor.startRanging();
+          float e = distance_data[i]-target;
+          u[i] = K_p*e;
+          motor_control(u[i]);
+          // time_diff_data[i] = end_time_data[i]-start_time_data[i];
+
+          i++;
+        }
+
+
+    }
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    //Send back the array
+    for (int j = 0; j < array_size; j++) {
+
+      if (time_data[j] != 0) {
+
+        tx_estring_value.clear();
+        tx_estring_value.append("Time:");
+        tx_estring_value.append(time_data[j]);
+        tx_estring_value.append(", Distance:");
+        tx_estring_value.append(distance_data[j]);
+        tx_estring_value.append(", u:");
+        tx_estring_value.append(u[j]);
+        tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+      } else break;
+
+    }
+
+    break;
+}
+```
 
 ## Task 1: Connect First Motor Driver
 
