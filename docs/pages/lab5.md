@@ -38,7 +38,7 @@ void motor_control(float control_input){
           
 }
 ```
-For Lab 5, I decided to implement the simplest form of control, a proportional controller, before expanding to more advanced techniques. To enable easy tuning without reprogramming, I created a Bluetooth command P, which allowed me to set an initial control input, adjust the proportional gain K_p, and specify a target distance. The function first applied motor_control using the initial input and then continuously updated control inputs based on the error, calculated as the difference between the measured distance from the ToF sensor and the target, multiplied by K_p. At the end of the run, I stopped the motors and transmitted the logged data including timestamps, measured distances, and control values back to the computer via Bluetooth for analysis and debugging.
+For Lab 5, I decided to implement the simplest form of control, a proportional controller, before expanding to more advanced techniques. To enable easy tuning without reprogramming, I created a Bluetooth command P, which allowed me to set an initial control input, adjust the proportional gain `K_p`, and specify a target distance. The function first applied motor_control using the initial input and then continuously updated control inputs based on the error, calculated as the difference between the measured distance from the ToF sensor and the target, multiplied by `K_p`. At the end of the run, I stopped the motors and transmitted the logged data including timestamps, measured distances, and control values back to the computer via Bluetooth for analysis and debugging.
 
 ```c
 case P:  {
@@ -118,6 +118,22 @@ case P:  {
     }
 
     break;
+}
+```
+To ensure my robot would stop even if the Bluetooth connection failed, I added analogWrite commands at the beginning of `setup()` to set the motor inputs to zero. This way, pressing the reset button would immediately stop the motors, preventing unintended movement if communication was lost.
+```c
+setup()
+{
+    pinMode(PWM_0, OUTPUT);
+    pinMode(PWM_1, OUTPUT);
+    pinMode(PWM_3, OUTPUT);
+    pinMode(PWM_5, OUTPUT);
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+    ...
 }
 ```
 
