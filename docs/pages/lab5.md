@@ -145,7 +145,7 @@ Generally, a  PID controller combines proportional, integral, and derivative con
 
 The proportional controller that I would be trying to create would only incorporate the proportional term. 
 
-![image](../images/lab5/P_formula.jpg)
+![image](../images/lab5/P_formula.png)
 
 A key drawback of a proportional controller is that it cannot fully eliminate the error between the setpoint and the actual value, as it always requires a nonzero error to generate a control effort. 
 This results in a steady-state error where the system settles close to, but not exactly at, the desired target.
@@ -155,7 +155,7 @@ This results in a steady-state error where the system settles close to, but not 
 
 In order to modify the RC car to my specifications, I began by disassembling it and removing most of the original components. I carefully removed all the screws, storing them securely, and then detached the outer blue shell. Once opened, I found a PCB populated with connected LEDs and wires. I removed the PCB by cutting the wires as close as possible to preserve their maximum length for future use. With these components removed, I was left with a blank canvas with which to work.
 
-![image](../images/lab4/Disassembled.jpg)
+![image](../images/lab4/Disassembled.png)
 
 
 
