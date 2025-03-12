@@ -6,12 +6,38 @@ layout: default
 
 # Lab 5: Linear PID and Linear Interpolation
 
-I transitioned my RC car from manual control to open loop control by integrating a SparkFun RedBoard Artemis Nano with dual motor drivers.
-
+In Lab 5, I implemented a PID-based position control system for a RC car using a ToF sensor to accurately stop 1ft from a wall, after tuning the controller. To improve control loop speed and reduce reliance on slow ToF sensor updates, I implemented a linear extrapolation method to estimate distance in real-time, allowing the PID controller to run at a higher frequency.
 * * *
 
 ## Prelab
+At the end of Lab 4, I had already implemented Bluetooth communication to send motor input values, allowing me to freely test my RC car without reprogramming. For Lab 5, I modified that code to integrate PID control by creating a motorControl() function, which mapped a control to a reasonable value for `analogWrite()` for PWM-based motor actuation.
+```c
+void motor_control(float control_input){
 
+    control_input = constrain(control_input, -1, 1);
+
+    int rm_f, rm_b;
+    int lm_f, lm_b;
+
+    if (control_input >= 0) {
+        rm_f = (int)round(255 * control_input);
+        lm_f = (int)round(255 * control_input * calibration_factor);
+        rm_b = 0;
+        lm_b = 0;
+    } else {
+        rm_f = 0;
+        lm_f = 0;
+        rm_b = (int)round(-255 * control_input);
+        lm_b = (int)round(-255 * control_input * calibration_factor);
+    }
+
+    analogWrite(PWM_0, lm_b);
+    analogWrite(PWM_1, lm_f);
+    analogWrite(PWM_3, rm_f);
+    analogWrite(PWM_5, rm_b);
+          
+}
+```
 
 ## Task 1: Connect First Motor Driver
 
