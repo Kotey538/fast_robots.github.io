@@ -6,7 +6,7 @@ layout: default
 
 # Lab 5: Linear PID and Linear Interpolation
 
-In Lab 5, I implemented a PID-based position control system for a RC car using a ToF sensor to accurately stop 1ft from a wall, after tuning the controller. To improve control loop speed and reduce reliance on slow ToF sensor updates, I implemented a linear extrapolation method to estimate distance in real-time, allowing the PID controller to run at a higher frequency.
+In Lab 5, I implemented a PID-based position control system for a RC car using a ToF sensor to accurately stop 1 ft from a wall, after tuning the controller. To improve control loop speed and reduce reliance on slow ToF sensor updates, I implemented a linear extrapolation method to estimate distance in real-time, allowing the PID controller to run at a higher frequency.
 * * *
 
 ## Prelab
