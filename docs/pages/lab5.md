@@ -150,6 +150,15 @@ The proportional controller that I would be trying to create would only incorpor
 A key drawback of a proportional controller is that it cannot fully eliminate the error between the setpoint and the actual value, as it always requires a nonzero error to generate a control effort. 
 This results in a steady-state error where the system settles close to, but not exactly at, the desired target.
 
+### First Test
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/HsAn4sc1UuQ" title="Fast Robots Lab 5: PID Tuning" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
+![image](../images/lab5/P_output.png)
+
 
 ## Task 3: Disassemble RC Car
 
