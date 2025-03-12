@@ -137,38 +137,19 @@ setup()
 }
 ```
 
-## Task 1: Connect First Motor Driver
+## Task 1: Position Control
 
-Following the wiring diagram I created, I connected the first motor driver to pins 0 and 1 on the Artemis and tied the grounds of the Artemis and the motor driver together.
+Generally, a  PID controller combines proportional, integral, and derivative control terms to generate a new control input through a feedback loop. Each term contributes differently: the proportional term reacts to the current error, the integral term accounts for accumulated past errors, and the derivative term predicts future error trends.
 
-![image](../images/lab4/Connected_Driver.jpg)
+![image](../images/lab5/PID_formula.jpg)
 
-## Task 2: Generate PWM
+The proportional controller that I would be trying to create would only incorporate the proportional term. 
 
-To verify the functionality of the motor driver before integrating it into the RC car, I used a power supply to deliver 3.7 volts through the VIN pin as it replicates the battery's voltage. I then measured the output from pin 0 using an oscilloscope and the code below.
+![image](../images/lab5/P_formula.jpg)
 
-```c
-#define PWM_0 0
+A key drawback of a proportional controller is that it cannot fully eliminate the error between the setpoint and the actual value, as it always requires a nonzero error to generate a control effort. 
+This results in a steady-state error where the system settles close to, but not exactly at, the desired target.
 
-int i = 0;
-
-void setup() {
-    pinMode(PWM_0, OUTPUT);
-    analogWrite(PWM_0, 0);
-}
-
-void loop() {                             
-    analogWrite(PWM_0, i);
-    delay(100);
-    i = (i + 10) % 255;
-}
-```
-This is the result on the oscilloscope.
-
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/5iewHeBsERo" title="Fast Robots Lab 4: PWM Signal on an Oscilloscope" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
 
 ## Task 3: Disassemble RC Car
 
