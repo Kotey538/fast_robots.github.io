@@ -19,3 +19,5 @@ Hello! My name is Kotey Ashie, and I’m a double major in Mechanical Engineerin
 - [Lab 3: ToF Sensors](docs/pages/lab3.md)
 - [Lab 4: Motors and Open Loop Control](docs/pages/lab4.md)
 - [Lab 5: Linear PID control and Linear interpolation](docs/pages/lab5.md)
+- [Lab 6: Orientation PID](docs/pages/lab6.md)
+- [Lab 7: Kalman Filtering](docs/pages/lab7.md)
