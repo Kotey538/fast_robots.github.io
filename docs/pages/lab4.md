@@ -176,7 +176,7 @@ The result is the following demonstration of the of all the wheels spinning, pow
 <br>
 
 ## Task 7: Assemble RC Car
-### ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top View&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom View
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top View&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom View
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px;">
   <div style="text-align: center;">
     <img src="../images/lab4/Top_View_Labeled.svg" alt="Top View" style="height: 400px; width: auto;">
