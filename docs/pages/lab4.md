@@ -177,16 +177,17 @@ The result is the following demonstration of the of all the wheels spinning, pow
 
 ## Task 7: Assemble RC Car
 
-<div style="display: flex; justify-content: center; align-items: flex-start; gap: 12px;">
-  <div style="flex: 1; text-align: center;">
-    <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 4px;">Top View</div>
-    <img src="{{ '/images/lab4/Top_View_Labeled.svg' | relative_url }}" alt="Top View" style="height: 400px; width: auto;">
+### Top View&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom View
+
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px;">
+  <div style="text-align: center;">
+    <img src="../images/lab4/Top_View_Labeled.svg" alt="Top View" style="height: 400px; width: auto;">
   </div>
-  <div style="flex: 1; text-align: center;">
-    <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 4px;">Bottom View</div>
-    <img src="{{ '/images/lab4/Bottom_View_Labeled.svg' | relative_url }}" alt="Bottom View" style="height: 400px; width: auto;">
+  <div style="text-align: center;">
+    <img src="../images/lab4/Bottom_View_Labeled.svg" alt="Bottom View" style="height: 400px; width: auto;">
   </div>
 </div>
+
 
 
 
