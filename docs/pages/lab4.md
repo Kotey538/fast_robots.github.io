@@ -176,7 +176,7 @@ The result is the following demonstration of the of all the wheels spinning, pow
 <br>
 
 ## Task 7: Assemble RC Car
-### Top View                                                    Bottom View
+### Top View                                                                             Bottom View
 <div style="display: flex; justify-content: center;">
   <img src="../images/lab4/Top_View_Labeled.svg" alt="top" width="45%">
   <img src="../images/lab4/Bottom_View_Labeled.svg" alt="Bottom" width="45%">
