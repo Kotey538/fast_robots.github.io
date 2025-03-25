@@ -176,20 +176,17 @@ The result is the following demonstration of the of all the wheels spinning, pow
 <br>
 
 ## Task 7: Assemble RC Car
-<div style="display: flex; justify-content: center; gap: 20px; text-align: center; align-items: flex-start;">
+<div style="display: flex; justify-content: center; gap: 10px; text-align: center; align-items: flex-start;">
   <div style="flex: 1;">
-    <h3 style="margin-bottom: 8px;">Top View</h3>
-    <div style="height: 400px; overflow: hidden;">
-      <img src="../images/lab4/Top_View_Labeled.svg" alt="Top View" style="height: 100%; width: 100%; object-fit: cover;">
-    </div>
+    <h3 style="margin-bottom: 4px;">Top View</h3>
+    <img src="../images/lab4/Top_View_Labeled.svg" alt="Top View" style="height: 400px; width: 100%; object-fit: contain;">
   </div>
   <div style="flex: 1;">
-    <h3 style="margin-bottom: 8px;">Bottom View</h3>
-    <div style="height: 400px; overflow: hidden;">
-      <img src="../images/lab4/Bottom_View_Labeled.svg" alt="Bottom View" style="height: 100%; width: 100%; object-fit: cover;">
-    </div>
+    <h3 style="margin-bottom: 4px;">Bottom View</h3>
+    <img src="../images/lab4/Bottom_View_Labeled.svg" alt="Bottom View" style="height: 400px; width: 100%; object-fit: contain;">
   </div>
 </div>
+
 
 
 ![image](../images/lab4/Top_View.jpg)
