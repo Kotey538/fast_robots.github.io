@@ -311,9 +311,11 @@ case ORIENT_DMP_P:  {
 I began testing my proportional controller using a K<sub>p</sub> = 0.1 and a target yaw angle of 30°.
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/6kPAHs0CVbs" title="Fast Robots Lab 6: Proportional Control Using Complimentary Filter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/5DzwB4r8gs8" title="Fast Robots Lab 6: P Control | Kp = 0.1, ∠30°" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
+
+![image](../images/lab6/P1.png)
 
 ## Discussion
 
