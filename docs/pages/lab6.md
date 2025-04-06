@@ -316,7 +316,7 @@ I began testing my proportional controller using a K<sub>p</sub> = 0.1 and a tar
 <br>
 
 ![image](../images/lab6/P1.png)
-![image](../images/lab6/P1.svg)
+
 
 ## Discussion
 
