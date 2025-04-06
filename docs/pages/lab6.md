@@ -38,89 +38,35 @@ void spin_control(float control_input){
           
 }
 ```
-For Lab 5, I decided to implement the simplest form of control, a proportional controller, before expanding to more advanced techniques. To enable easy tuning without reprogramming, I created a Bluetooth command P, which allowed me to set an initial control input, adjust the proportional gain `K_p`, and specify a target distance. The function first applied motor_control using the initial input and then continuously updated control inputs based on the error, calculated as the difference between the measured distance from the ToF sensor and the target, multiplied by `K_p`. At the end of the run, I stopped the motors and transmitted the logged data including timestamps, measured distances, and control values back to the computer via Bluetooth for analysis and debugging.
+In pratice, it behaves like the following:
 
 ```c
-case P:  {
+case SPIN_TEST:  {
     
-    float u_0, K_p;
-    int target;
 
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(u_0);
-    if (!success)
-        return;
+    spin_control(1); 
 
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(K_p);
-    if (!success)
-        return;
+    delay(5000);
 
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(target);
-    if (!success)
-        return;
+    spin_control(-1);
 
-    motor_control(u_0);
-
-    memset(time_data, 0, sizeof(time_data));
-    memset(distance_data, 0, sizeof(distance_data));
-    memset(u, 0, sizeof(u));
-
-    int i = 0;
-
-    unsigned long start_time = millis(); 
-
-    distanceSensor.setDistanceModeShort();
-    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
-
-    while ((millis() - start_time < 5000) && (i < array_size)) {      
-        
-        if (distanceSensor.checkForDataReady())
-        {
-          time_data[i] = (int) millis();
-          distance_data[i] = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
-          distanceSensor.clearInterrupt();
-          distanceSensor.stopRanging();
-          distanceSensor.startRanging();
-          float e = distance_data[i]-target;
-          u[i] = K_p*e;
-          motor_control(u[i]);
-          // time_diff_data[i] = end_time_data[i]-start_time_data[i];
-
-          i++;
-        }
-
-
-    }
+    delay(5000);
 
     analogWrite(PWM_0, 0);
     analogWrite(PWM_1, 0);
     analogWrite(PWM_3, 0);
     analogWrite(PWM_5, 0);
 
-    //Send back the array
-    for (int j = 0; j < array_size; j++) {
-
-      if (time_data[j] != 0) {
-
-        tx_estring_value.clear();
-        tx_estring_value.append("Time:");
-        tx_estring_value.append(time_data[j]);
-        tx_estring_value.append(", Distance:");
-        tx_estring_value.append(distance_data[j]);
-        tx_estring_value.append(", u:");
-        tx_estring_value.append(u[j]);
-        tx_characteristic_string.writeValue(tx_estring_value.c_str());
-
-      } else break;
-
-    }
-
-    break;
 }
 ```
-To ensure my robot would stop even if the Bluetooth connection failed, I added analogWrite commands at the beginning of `setup()` to set the motor inputs to zero. This way, pressing the reset button would immediately stop the motors, preventing unintended movement if communication was lost.
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/FKEZ6W0vhyw" title="Fast Robots Lab 6: Testing Spinning" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
+To send data via Bluetooth, I used the same framework from previous labs. I call `ble.send_command()` to transmit commands, and use `robot_cmd.get_next_value()` to extract specific values I have sent with the relevant command, such as the PID gains or the desired setpoint. For receiving data, I also reused the existing structure: on the Artemi  side,  I call `tx_characteristic_string.writeValue()` with the relevant data string (`tx_estring_value.c_str()`). This string is received on the computer side via Bluetooth and parsed by a notification handler. For this lab, I focused on transmitting time, yaw angle, and control signal values.
+
+As in Lab 5, I used analogWrite() to set all PWM values from motor control pins to zero at the beginning of setup(). This allows for me to stop the motors simply by reset in the event of a Bluetooth connection loss.
 ```c
 setup()
 {
