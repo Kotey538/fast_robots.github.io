@@ -308,7 +308,7 @@ case ORIENT_DMP_P:  {
 ```
 ### Test the Proportional Controller
 
-I began testing my proportional controller using a K<sub>p</sub> = 0.1 and a target yaw angle of 30°.
+After some tuning, I settled on a proportional gain of K<sub>p</sub> = 0.1 for my controller. The following test was conducted with a target yaw angle of 30°.
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/5DzwB4r8gs8" title="Fast Robots Lab 6: P Control | Kp = 0.1, ∠30°" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -317,6 +317,9 @@ I began testing my proportional controller using a K<sub>p</sub> = 0.1 and a tar
 
 ![image](../images/lab6/P1.png)
 > Since spin_control() maps the control input u from the range [-1, 1], any u values of greater than 1 are capped at +100% (full speed clockwise), and values less than -1 are capped at -100% (full speed counterclockwise).
+
+Based on this test, a derivative term appeared unnecessary. Derivative control is typically useful for damping oscillations, but there was very little oscillation observed. This is likely because I did not filter out the region of low PWM values that are too small to cause the RC car to rotate on its axis.
+
 
 
 ## Discussion
