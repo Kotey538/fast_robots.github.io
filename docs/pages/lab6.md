@@ -316,7 +316,7 @@ I began testing my proportional controller using a K<sub>p</sub> = 0.1 and a tar
 <br>
 
 ![image](../images/lab6/P1.png)
-> Since analogWrite() only accepts PWM values in the range [0, 255], and spin_control() maps the control input u from the range [-1, 1], any values of greater than 1 are capped at +100% (full speed clockwise), and values less than -1 are capped at -100% (full speed counterclockwise).
+> Since spin_control() maps the control input u from the range [-1, 1], any u values of greater than 1 are capped at +100% (full speed clockwise), and values less than -1 are capped at -100% (full speed counterclockwise).
 
 
 ## Discussion
