@@ -114,13 +114,9 @@ case ORIENT_P:  {
 
 
     memset(time_data, 0, sizeof(time_data));
-    memset(pitch_data, 0, sizeof(pitch_data));
     memset(roll_data, 0, sizeof(roll_data));
-    memset(pitch_LPF, 0, sizeof(pitch_LPF));
     memset(roll_LPF, 0, sizeof(roll_LPF));
-    memset(pitch_gyro, 0, sizeof(pitch_gyro));
     memset(roll_gyro, 0, sizeof(roll_gyro));
-    memset(comp_pitch, 0, sizeof(comp_pitch));
     memset(comp_roll, 0, sizeof(comp_roll));
     memset(u, 0, sizeof(u));
 
@@ -141,20 +137,14 @@ case ORIENT_P:  {
         dt = (micros()-last_time)/1000000.;
         last_time = micros();      
         time_data[i] = (int) millis();
-        pitch_data[i] =  atan2(myICM.accX(),myICM.accZ())*180/M_PI;
         roll_data[i] =  atan2(myICM.accY(),myICM.accZ())*180/M_PI;
 
         n = i+1;
-        pitch_LPF[n] = alpha*pitch_data[i] + (1-alpha)*pitch_LPF[n-1];
-        pitch_LPF[n-1] = pitch_LPF[n];
         roll_LPF[n] = alpha*roll_data[i]+ (1-alpha)*roll_LPF[n-1];
         roll_LPF[n-1] = roll_LPF[n];
 
-        pitch_gyro[n] = pitch_gyro[n-1] + myICM.gyrY()*dt;
         roll_gyro[n] =  roll_gyro[n-1] + myICM.gyrX()*dt;
 
-
-        comp_pitch[n] = (1 - Gamma) * pitch_gyro[n] + Gamma * pitch_LPF[n];
         comp_roll[n] = (1 - Gamma) * roll_gyro[n] + Gamma * roll_LPF[n];
 
         float e = comp_roll[n]-target;
@@ -180,7 +170,7 @@ case ORIENT_P:  {
         tx_estring_value.append(", roll:");
         tx_estring_value.append(comp_roll[j]);
         tx_estring_value.append(", u:");
-        tx_estring_value.append(comp_pitch[j]);
+        tx_estring_value.append(u[j]);
         tx_characteristic_string.writeValue(tx_estring_value.c_str());
 
       } else break;
