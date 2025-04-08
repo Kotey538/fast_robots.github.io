@@ -176,10 +176,11 @@ case STUNT2:  {
 
 ## Discussion
 
-This lab taught me the importance of precise wiring when working with microcontrollers. The lab provided valuable hands-on experience in motor control and system calibration, laying the groundwork for future closed-loop control enhancements.
+This lab showed the limitations of only using open loop control, reinforcing the value of closed-loop systems like those implemented in earlier labs.
 
 * * *
 
 # Acknowledgements
 *   I referenced Stephan Wagner's page.
+*   I used Josh Simpson's RC car
 
