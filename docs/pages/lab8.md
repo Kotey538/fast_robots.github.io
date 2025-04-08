@@ -9,79 +9,95 @@ layout: default
 In Lab 8, I integrated all the hardware and software developed throughout the course to execute a high-speed stunt with my RC car. Given the choice between a flip and a drift, I chose the flip stunt. In this task, the robot accelerates rapidly toward a wall and, upon reaching a specific distance, performs a front flip and continues moving in reverse.
 
 * * *
-At the end of Lab 4, I had already implemented Bluetooth communication to send motor input values, allowing me to freely test my RC car without reprogramming. 
+ 
 ## Prelab
-For Lab 5, I created a `motorControl()` function to map the PID output to appropriate PWM values using analogWrite() for forward and backward motor actuation. In Lab 6, I built on this by implementing a new `spin_Control()` function, which drives the motors in opposite directions to induce clockwise or counter-clockwise rotation for orientation control. I reused the Bluetooth communication framework from Labs 4 and 5 to send gains and update the yaw setpoint in subsequent runs.
+Having decided to pursue the flip stunt, I learned the general methodology for executing a flip with an RC car. The key principle involves accelerating quickly with the mass distributed toward the front of the car, then either applying a sudden brake or quickly reversing direction to initiate the flip. To explore both approaches, I implemented simple test commands to evaluate how effectively each method triggered a successful flip.
+
+Braking:
 ```c
-void spin_control(float control_input){
-
-    control_input = constrain(control_input, -1, 1);
-
-    int rm_f, rm_b;
-    int lm_f, lm_b;
-
-    if (control_input >= 0) {
-        rm_f = (int)round(255 * control_input);
-        lm_f = 0;
-        rm_b = 0;
-        lm_b = (int)round(255 * control_input * calibration_factor);
-    } else {
-        rm_f = 0;
-        lm_f = (int)round(-255 * control_input * calibration_factor);
-        rm_b = (int)round(-255 * control_input);
-        lm_b = 0;
-    }
-
-    analogWrite(PWM_0, lm_b);
-    analogWrite(PWM_1, lm_f);
-    analogWrite(PWM_3, rm_f);
-    analogWrite(PWM_5, rm_b);
-          
-}
-```
-In pratice, it behaves like the following:
-
-```c
-case SPIN_TEST:  {
+case FLIP_B:  {
     
+    float u_0;
 
-    spin_control(1); 
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(u_0);
+    if (!success)
+        return;
 
-    delay(5000);
 
-    spin_control(-1);
+    motor_control(u_0);
 
-    delay(5000);
+    delay(2000);
+
+    analogWrite(PWM_0, 255);
+    analogWrite(PWM_1, 255);
+    analogWrite(PWM_3, 255);
+    analogWrite(PWM_5, 255);
+
+    delay(2000);
 
     analogWrite(PWM_0, 0);
     analogWrite(PWM_1, 0);
     analogWrite(PWM_3, 0);
     analogWrite(PWM_5, 0);
 
+    break;
 }
 ```
+
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/FKEZ6W0vhyw" title="Fast Robots Lab 6: Testing Spinning" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/hNo8b9V7_ss" title="Fast Robots Lab 8: Braking Flip Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
 
-To send data via Bluetooth, I used the same framework from previous labs. I call `ble.send_command()` to transmit commands, and use `robot_cmd.get_next_value()` to extract specific values I have sent with the relevant command, such as the PID gains or the desired setpoint. For receiving data, I also reused the existing structure: on the Artemi  side,  I call `tx_characteristic_string.writeValue()` with the relevant data string (`tx_estring_value.c_str()`). This string is received on the computer side via Bluetooth and parsed by a notification handler. For this lab, I focused on transmitting time, yaw angle, and control signal values.
-
-As in Lab 5, I used analogWrite() to set all PWM values from motor control pins to zero at the beginning of setup(). This allows for me to stop the motors simply by reset in the event of a Bluetooth connection loss.
+Reversing:
 ```c
-setup()
-{
-    pinMode(PWM_0, OUTPUT);
-    pinMode(PWM_1, OUTPUT);
-    pinMode(PWM_3, OUTPUT);
-    pinMode(PWM_5, OUTPUT);
+case FLIP_R:  {
+    
+    float u_0;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(u_0);
+    if (!success)
+        return;
+
+
+    motor_control(u_0);
+
+    delay(1000);
+
+    analogWrite(PWM_0, 255);
+    analogWrite(PWM_1, 255);
+    analogWrite(PWM_3, 255);
+    analogWrite(PWM_5, 255);
+
+    delay(500);
+
+    motor_control(-u_0);
+
+    delay(1000);
+
+    analogWrite(PWM_0, 255);
+    analogWrite(PWM_1, 255);
+    analogWrite(PWM_3, 255);
+    analogWrite(PWM_5, 255);
+
+
+    delay(3000);
 
     analogWrite(PWM_0, 0);
     analogWrite(PWM_1, 0);
     analogWrite(PWM_3, 0);
     analogWrite(PWM_5, 0);
-    ...
-}
+
+    break;
+```
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ltD8J51-5GQ" title="Fast Robots Lab 8: Reversing Flip Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
 ```
 
 ## Proportional Control
