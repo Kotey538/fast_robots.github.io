@@ -98,7 +98,7 @@ case FLIP_R:  {
 </div>
 <br>
 
-As shown in the videos, both flip methods initially failed despite using full motor power, leaving me unsure of the issue. With help from a course staff member, I discovered that my battery was undercharged, reading only 3.7 to 3.8 volts instead of the expected 4.1 to 4.2 volts, which led to insufficient speed. After switching to a fully charged battery, a new issue appeared: when sending the signal for forward to both sets of wheels, only one side would spin. When sending the signal for backward, only the opposite side would spin instead. Faced with these motor control problems, I ultimately borrowed a classmate’s RC car to complete the stunt.
+As shown in the videos, both flip methods initially failed despite using the full power of my motor, leaving me unsure of the issue. With help from a course staff member, I discovered that my battery was undercharged, reading only 3.7 to 3.8 volts instead of the expected 4.1 to 4.2 volts, which led to insufficient speed. After switching to a fully charged battery, a new issue appeared: when sending the signal for forward to both sets of wheels, only one side would spin. When sending the signal for backward, only the opposite side would spin instead. Faced with these motor control problems, I ultimately borrowed a classmate’s RC car to complete the stunt.
 
 
 ## Proportional Control
