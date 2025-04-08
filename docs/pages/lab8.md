@@ -1,12 +1,13 @@
 ---
 title: "MAE 4910 Fast Robots"
-description: "Lab 6: Orientation Control"
+description: "Lab 8: Stunts"
 layout: default
 ---
 
-# Lab 6: Orientation Control
+# Lab 8: Stunts
 
-In Lab 6, I implemented a PID-based orientation control system for the RC car using data from the IMU to estimate yaw. I used the onboard Digital Motion Processor (DMP) for stable yaw measurements. The PID controller output a motor drive signal to rotate the robot in place toward a desired angle setpoint, which could be updated via Bluetooth.
+In Lab 8, I integrated all the hardware and software developed throughout the course to execute a high-speed stunt with my RC car. Given the choice between a flip and a drift, I chose the flip stunt. In this task, the robot accelerates rapidly toward a wall and, upon reaching a specific distance, performs a front flip and continues moving in reverse.
+
 * * *
 At the end of Lab 4, I had already implemented Bluetooth communication to send motor input values, allowing me to freely test my RC car without reprogramming. 
 ## Prelab
