@@ -11,7 +11,7 @@ In Lab 8, I integrated all the hardware and software developed throughout the co
 * * *
  
 ## Prelab
-Having decided to pursue the flip stunt, I learned the general methodology for executing a flip with an RC car. The key principle involves accelerating quickly with the mass distributed toward the front of the car, then either applying a sudden brake or quickly reversing direction to initiate the flip. To explore both approaches, I implemented simple test commands to evaluate how effectively each method triggered a successful flip.
+Having decided to pursue the flip stunt, I learned the general methodology for executing a flip with an RC car. The key principle involves accelerating quickly with the mass distributed toward the front of the car, then either applying a sudden brake or quickly reversing direction to initiate the flip. To explore both approaches, I implemented simple test commands to evaluate how effectively each method triggered a successful flip. 
 
 ### Braking
 ```c
@@ -98,7 +98,7 @@ case FLIP_R:  {
 </div>
 <br>
 
-As shown in the videos, both flip methods initially failed despite using the full power of my motor, leaving me unsure of the issue. With help from a course staff member, I discovered that my battery was undercharged, reading only 3.7 to 3.8 volts instead of the expected 4.1 to 4.2 volts, which led to insufficient speed. After switching to a fully charged battery, a new issue appeared: when sending the signal for forward to both sets of wheels, only one side would spin. When sending the signal for backward, only the opposite side would spin instead. Faced with these motor control problems, I ultimately borrowed a classmate’s RC car to complete the stunt.
+As shown in the videos, both flip methods initially failed despite using the full power of my motor, leaving me unsure of the issue. With help from a course staff member, I discovered that my battery was undercharged, reading only 3.7 to 3.8 volts instead of the expected 4.1 to 4.2 volts, which led to insufficient speed. After switching to a fully charged battery, a new issue appeared: when sending the signal for forward to both sets of wheels, only one side would spin. When sending the signal for backward, only the opposite side would spin instead. Faced with these motor control problems, I ultimately borrowed a classmate’s RC car to complete the stunt. With the new RC car, the only changes I needed to make for my code to work were updating the MAC address for the Artemis board, adjusting the motor control pin assignments, and modifying the calibration factor the motors.
 
 
 ## Proportional Control
