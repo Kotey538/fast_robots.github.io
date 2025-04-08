@@ -1,10 +1,10 @@
 ---
 title: "MAE 4910 Fast Robots"
-description: "Lab 4: Motors and Open Loop Control"
+description: "Lab 7: Kalman Filter"
 layout: default
 ---
 
-# Lab 4: Motors and Open Loop Control
+# Lab 7: Kalman Filter
 
 I transitioned my RC car from manual control to open loop control by integrating a SparkFun RedBoard Artemis Nano with dual motor drivers.
 
