@@ -105,6 +105,41 @@ As shown in the videos, both flip methods initially failed despite using the ful
 
 Due to time constraints, I opted for open-loop control, which limited my ability to precisely control the RC car’s return. If I had implemented orientation control as in Lab 6, I would have had much better control during the return phase.
 
+```c
+case STUNT2:  {
+    
+    float u_0;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(u_0);
+    if (!success)
+        return;
+
+
+    motor_control(u_0);
+
+    delay(2000);
+
+    analogWrite(PWM_0, 255);
+    analogWrite(PWM_1, 255);
+    analogWrite(PWM_3, 255);
+    analogWrite(PWM_5, 255);
+
+    delay(2000);
+
+    motor_control(-0.5*u_0);
+
+
+    delay(2000);
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    break;
+}
+```
 
 ## Trials
 
