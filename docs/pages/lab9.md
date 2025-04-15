@@ -274,11 +274,10 @@ There were several issues with the performance of my RC car. During testing, the
 
 ## Discussion
 
-This lab showed the limitations of only using open loop control, reinforcing the value of closed-loop systems like those implemented in earlier labs.
+This lab emphasized the importance of accurate sensor data collection and reliable control when performing mapping tasks. It provided experience with IMU and ToF sensor data for 2D spatial understanding. The process of debugging the motor drivers, and requisition of data from the ToF and IMU reinforced the value of methodical testing and system-level troubleshooting. This lab laid a strong foundation for future work in localization and autonomous navigation.
 
 * * *
 
 # Acknowledgements
 *   I referenced Stephan Wagner's page.
-*   I used Josh Simpson's RC car
 
