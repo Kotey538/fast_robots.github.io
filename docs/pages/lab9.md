@@ -1,17 +1,50 @@
 ---
 title: "MAE 4910 Fast Robots"
-description: "Lab 8: Stunts"
+description: "Lab 9: Mapping"
 layout: default
 ---
 
-# Lab 8: Stunts
+# Lab 9: Mapping
 
-In Lab 8, I integrated all the hardware and software developed throughout the course to execute a high-speed stunt with my RC car. Given the choice between a flip and a drift, I chose the flip stunt. In this task, the robot accelerates rapidly toward a wall and, upon reaching a specific distance, performs a front flip and continues moving in reverse.
+In Lab 9, I implemented a mapping routine to generate a spatial representation of a static room using my RC robot. By rotating the robot in place at marked locations, I collected Time-of-Flight (ToF) distance measurements and used orientation data from the IMU to associate each measurement with an angle. I then transformed these local readings into a global reference frame using transformation matrices. Finally, I visualized the mapped environment and approximated the walls using line segments to create a line-based map for future localization and navigation tasks.
 
 * * *
  
 ## Prelab
-Having decided to pursue the flip stunt, I learned the general methodology for executing a flip with an RC car. The key principle involves accelerating quickly with the mass distributed toward the front of the car, then either applying a sudden brake or quickly reversing direction to initiate the flip. 
+
+I then focused on fixing the implementation of the stunt command from Lab 8 since Lab 9 required reliable collection of both ToF and IMU data, which I was unable to achieve during the stunt routine. Although the motors were controlled correctly, the function only collected sensor data for approximately 0.4 seconds even though the intended runtime was 5 seconds. By inserting Serial print statements to debug the function, I discovered that the index variable was being incremented outside the condition that checks for valid sensor data. This caused empty entries in the data arrays and led the program to exit the loop early when the condition `if (time_data[j] != 0)`  failed. To resolve this, I modified the logic so that the index increments only when valid sensor data is received.
+```c
+case FLIP_B:  {
+    
+    float u_0;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(u_0);
+    if (!success)
+        return;
+
+
+    motor_control(u_0);
+
+    delay(2000);
+
+    analogWrite(PWM_0, 255);
+    analogWrite(PWM_1, 255);
+    analogWrite(PWM_3, 255);
+    analogWrite(PWM_5, 255);
+
+    delay(2000);
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    break;
+}
+```
+
+
 
 ## Stunt
 To explore both approaches, I implemented simple test commands to evaluate how effectively each method triggered a successful flip. 
