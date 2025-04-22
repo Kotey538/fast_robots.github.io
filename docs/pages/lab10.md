@@ -169,6 +169,7 @@ def update_step():
 
 ## Discussion
 
+This lab highlighted the effectiveness of probabilistic localization using the Bayes filter. It emphasized accurately modeling sensor and motion uncertainties to reliably estimate the robot's pose. Optimizing computational efficiency in the prediction and update steps reinforced the importance of structured code and systematic debugging. Overall, this experience strengthened my understanding of probabilistic reasoning, laying the groundwork for robust localization and autonomous robot navigation tasks in future projects.
 
 * * *
 
