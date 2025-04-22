@@ -22,3 +22,5 @@ Hello! My name is Kotey Ashie, and I’m a double major in Mechanical Engineerin
 - [Lab 6: Orientation PID](docs/pages/lab6.md)
 - [Lab 7: Kalman Filtering](docs/pages/lab7.md)
 - [Lab 8: Stunts](docs/pages/lab8.md)
+- [Lab 9: Mapping](docs/pages/lab9.md)
+- [Lab 10: Grid Localization using Bayes Filter](docs/pages/lab10.md)
