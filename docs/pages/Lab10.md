@@ -6,270 +6,143 @@ layout: default
 
 # Lab 10: Grid Localization using Bayes Filter
 
-In Lab 9, I implemented a mapping routine to generate a spatial representation of a static room using my RC robot. By rotating the robot in place at marked locations, I collected Time-of-Flight (ToF) distance measurements and used orientation data from the IMU to associate each measurement with an angle. I then transformed these local readings into a global reference frame using transformation matrices. Finally, I visualized the mapped environment and approximated the walls using line segments to create a line-based map for future localization and navigation tasks.
+In Lab 10, I implemented grid localization using a Bayes filter to estimate the robot's position within a 3D grid. By applying odometry data in the prediction step and incorporating sensor measurements in the update step, I updated the robot’s belief at each step. The grid with the highest probability indicated the most likely position, and I visualized the results to track the robot's trajectory and compare it to the ground truth pose.
 
 * * *
  
 ## Prelab
 
-As mentioned in Lab 8, my RC car exhibited an issue where only one side of the wheels would spin when sending the forward signal to both sets, and only the opposite side would spin when sending the backward signal. To identify the cause, I used an oscilloscope to probe the motor driver's input and output signals and tested with a DC power supply rather than a battery. 
 
-![image](../images/lab9/Scope.jpg)
+## Compute Control  
 
-While scoping, I observed that some of the outputs were very noisy, although I could not pinpoint the exact issue. As a result, I decided to replace the motor driver entirely. After the replacement, the RC car functioned as expected and the problem was resolved.
+```python
+def compute_control(cur_pose, prev_pose):
+    """ Given the current and previous odometry poses, this function extracts
+    the control information based on the odometry motion model.
 
+    Args:
+        cur_pose  ([Pose]): Current Pose
+        prev_pose ([Pose]): Previous Pose 
 
-I then focused on fixing the implementation of the stunt command from Lab 8 since Lab 9 required reliable collection of both ToF and IMU data, which I was unable to achieve during the stunt routine. Although the motors were controlled correctly, the function only collected sensor data for approximately 0.4 seconds even though the intended runtime was 5 seconds. By inserting Serial print statements to debug the function, I discovered that the index variable was being incremented outside the condition that checks for valid sensor data. This caused empty entries in the data arrays and led the program to exit the loop early when the condition `if (time_data[j] != 0)`  failed. To resolve this, I modified the logic so that the index increments only when valid sensor data is received.
+    Returns:
+        [delta_rot_1]: Rotation 1  (degrees)
+        [delta_trans]: Translation (meters)
+        [delta_rot_2]: Rotation 2  (degrees)
+    """
 
+    cur_pose = np.array(cur_pose)
+    prev_pose = np.array(prev_pose)
 
-```c
-case STUNT:  {
+    delta_pose = cur_pose - prev_pose
+
+    # Calculate the first rotation, then normalize to (-180, 180)
+    delta_rot_1 = mapper.normalize_angle(np.degrees(np.arctan2(delta_pose[1], delta_pose[0]) - prev_pose[2]))
+
+    # Calculate the translation 
+    delta_trans = np.linalg.norm(delta_pose[:2], axis=0)
     
-    // Serial.println("STUNT command received!");
-    float u_0;
-    NReversed = true;
+     # Calculate the second rotation, then normalize to (-180, 180)
+    delta_rot_2 = mapper.normalize_angle(delta_pose[2] - delta_rot_1)
+    
 
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(u_0);
-    if (!success)
-        return;
+    return delta_rot_1, delta_trans, delta_rot_2
 
 
-    motor_control(u_0);
-
-    // delay(2000);
-
-    // motor_control(-u_0);
-
-    // delay(2000);
-
-    // analogWrite(PWM_0, 0);
-    // analogWrite(PWM_1, 0);
-    // analogWrite(PWM_3, 0);
-    // analogWrite(PWM_5, 0);
-
-
-    memset(time_data, 0, sizeof(time_data));
-    memset(time_data2, 0, sizeof(time_data2));
-    memset(distance_data, 0, sizeof(distance_data));
-    memset(roll_data, 0, sizeof(roll_data));
-    memset(pitch_data, 0, sizeof(pitch_data));
-    memset(yaw_data, 0, sizeof(yaw_data));
-    // memset(u, 0, sizeof(u));
-
-    i = 0;
-    i2 = 0;
-
-    unsigned long start_time = millis();
-
-    distanceSensor.setDistanceModeShort();
-    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
-
-    while ((millis() - start_time < 5000) && (i < array_size)) {
-
-        if ((millis() - start_time > 2000) && (NReversed == true)) {
-          analogWrite(PWM_0, 255);
-          analogWrite(PWM_1, 255);
-          analogWrite(PWM_3, 255);
-          analogWrite(PWM_5, 255);
-
-          NReversed = false;
-        }
-
-        icm_20948_DMP_data_t data;
-        myICM.readDMPdataFromFIFO(&data);
-
-        // Is valid data available?
-        if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) {
-            // We have asked for GRV data so we should receive Quat6
-            if ((data.header & DMP_header_bitmap_Quat6) > 0) {
-                double qy = ((double)data.Quat6.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
-                double qx = ((double)data.Quat6.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
-                double qz = -((double)data.Quat6.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
-                double qw = sqrt(1.0 - ((qy * qy) + (qx * qx) + (qz* qz)));
-
-                // Convert the quaternion to Euler angles...
-
-                // roll (x-axis rotation)
-                double t0 = +2.0 * (qw * qx + qy * qz);
-                double t1 = +1.0 - 2.0 * (qx * qx + qy * qy);
-                roll_data[i] = atan2(t0, t1) * 180.0 / PI;
-
-                // // pitch (y-axis rotation)
-                // double t2 = +2.0 * (qw * qy - qx * qz);
-                // t2 = t2 > 1.0 ? 1.0 : t2;
-                // t2 = t2 < -1.0 ? -1.0 : t2;
-                // pitch_data[i] = asin(t2) * 180.0 / PI;
-
-                // yaw (z-axis rotation)
-                double t3 = +2.0 * (qw * qz + qx * qy);
-                double t4 = +1.0 - 2.0 * (qy * qy + qz * qz);
-                yaw_data[i] = atan2(t3, t4) * 180.0 / PI;
-                
-                time_data[i] = (int) millis();
-                Serial.println(time_data[i]);
-                i++;
-
-            }
-        }
-
-        if (distanceSensor.checkForDataReady())
-        {
-          distance_data[i2] = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
-          time_data2[i2] = (int) millis();
-          distanceSensor.clearInterrupt();
-          distanceSensor.stopRanging();
-          distanceSensor.startRanging();
-          i2++;
-        }
-
-    }
-
-    analogWrite(PWM_0, 0);
-    analogWrite(PWM_1, 0);
-    analogWrite(PWM_3, 0);
-    analogWrite(PWM_5, 0);
-
-    // Serial.println("Sending Data");
-
-    //Send back the array
-    for (int j = 0; j < array_size; j++) {
-
-      if (time_data[j] != 0 || time_data2[j] != 0) {
-
-        tx_estring_value.clear();
-        tx_estring_value.append("Time:");
-        tx_estring_value.append(time_data[j]);
-        Serial.println(time_data[j]);
-        tx_estring_value.append(", Time2:");
-        tx_estring_value.append(time_data2[j]);
-        // tx_estring_value.append(", Distance:");
-        // tx_estring_value.append(distance_data[j]);
-        // tx_estring_value.append(", roll:");
-        // tx_estring_value.append(roll_data[j]);
-        // // tx_estring_value.append(", pitch:");
-        // // tx_estring_value.append(pitch_data[j]);
-        // tx_estring_value.append(", yaw:");
-        // tx_estring_value.append(yaw_data[j]);
-        // // tx_estring_value.append(", u:");
-        // // tx_estring_value.append(u[j]);
-        tx_characteristic_string.writeValue(tx_estring_value.c_str());
-        // Serial.println(time_data[j]);
-
-      } else break;
-
-
-    }
-
-    // Serial.println("STUNT done");
-
-    break;
-}
 ```
 
-## Orientation control
 
-I decided to tune my PID orientation controller to enable the robot to perform on-axis turns in small, accurate increments. To achieve this, I re-implemented the ORIENT_DMP_P command from Lab 6 and modified it to accept a delta angle rather than an absolute target. This delta defined the incremental step size for the desired orientation. I then placed the proportional control logic inside a for-loop to sequentially step through each target angle, allowing the robot to rotate in controlled increments.
+### Odometry Motion Model
 
-```c
-case ORIENT_DMP_P:  {
-    
-
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(K_p);
-    if (!success)
-        return;
-
-    // Extract the next value from the command string as an integer
-    success = robot_cmd.get_next_value(delta_angle);
-    if (!success)
-        return;
-
-    memset(time_data, 0, sizeof(time_data));
-    memset(yaw_data, 0, sizeof(yaw_data));
-    memset(u, 0, sizeof(u));
-    memset(angle_A, 0, sizeof(angle_A));
-
-    i = 0;
-
-    
-
-     // Step through 360 degrees by the given increments
-    for (int angle = 0; angle < 360; angle += delta_angle) {
-
-        unsigned long start_time = millis();
-
-        while ((millis() - start_time < 3000) && (i < array_size)) {
-
-            icm_20948_DMP_data_t data;
-            myICM.readDMPdataFromFIFO(&data);
-
-            // Is valid data available?
-            if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) {
-                // We have asked for GRV data so we should receive Quat6
-                if ((data.header & DMP_header_bitmap_Quat6) > 0) {
-                    double qy = ((double)data.Quat6.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
-                    double qx = ((double)data.Quat6.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
-                    double qz = -((double)data.Quat6.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
-                    double qw = sqrt(1.0 - ((qy * qy) + (qx * qx) + (qz* qz)));
-
-                    // Convert the quaternion to Euler angles...
-
-                    double t3 = +2.0 * (qw * qz + qx * qy);
-                    double t4 = +1.0 - 2.0 * (qy * qy + qz * qz);
-                    yaw_data[i] = atan2(t3, t4) * 180.0 / PI;
-                    
-                    time_data[i] = (int) millis();
-                    float e = angle-yaw_data[i];
-                    u[i] = K_p*e;
-                    spin_control(u[i]);
-                    angle_A[i]=angle;
-                    i++;
-                    
-                }
-            }
-            
-        }
-
-
-    }
-
-    analogWrite(PWM_0, 0);
-    analogWrite(PWM_1, 0);
-    analogWrite(PWM_3, 0);
-    analogWrite(PWM_5, 0);
-
-    //Send back the array
-    for (int j = 0; j < array_size; j++) {
-
-      if (time_data[j] != 0) {
-
-        tx_estring_value.clear();
-        tx_estring_value.append("Time:");
-        tx_estring_value.append(time_data[j]);
-        tx_estring_value.append(", yaw:");
-        tx_estring_value.append(yaw_data[j]);
-        tx_estring_value.append(", u:");
-        tx_estring_value.append(u[j]);
-        tx_estring_value.append(", angle:");
-        tx_estring_value.append(angle_A[j]);
-        tx_characteristic_string.writeValue(tx_estring_value.c_str());
-
-      } else break;
-
-    }
-
-    break;
-}
 ```
-This is the result.
+def odom_motion_model(cur_pose, prev_pose, u):
+    """ Odometry Motion Model
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/jrZTYHFDVTs" title="Fast Robots Lab 9: Incrementing Angle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<br>
+    Args:
+        cur_pose  ([Pose]): Current Pose
+        prev_pose ([Pose]): Previous Pose
+        (rot1, trans, rot2) (float, float, float): A tuple with control data in the format 
+                                                   format (rot1, trans, rot2) with units (degrees, meters, degrees)
 
-There were several issues with the performance of my RC car. During testing, the robot rotated more than 360 degrees and eventually disconnected from Bluetooth. Based on similar issues in earlier labs, I initially suspected the disconnection was caused by how data was being transmitted. However, the robot’s behavior also suggested that either the calibration factor or the tuning of the PID orientation controller was incorrect, likely due to the recent replacement of the motor driver. To isolate the problem, I ran the SPIN_TEST command to check if the robot could still perform on-axis turns. While the robot connected to Bluetooth successfully, it disconnected within 15 seconds before I was even able to run a command. This suggests that the disconnection issue may not be related to data transmission but instead to another underlying factor.
+
+    Returns:
+        prob [float]: Probability p(x'|x, u)
+    """
+    deltas = np.array(compute_control(cur_pose, prev_pose))
+    sigmas = [loc.odom_rot_sigma, loc.odom_trans_sigma, loc.odom_rot_sigma]
+
+    prob = np.prod(loc.gaussian(deltas, u, sigmas))
+
+    return prob
+```
+
+## Prediction Step  
+
+```
+def prediction_step(cur_odom, prev_odom):
+    """ Prediction step of the Bayes Filter.
+    Update the probabilities in loc.bel_bar based on loc.bel from the previous time step and the odometry motion model.
+
+    Args:
+        cur_odom  ([Pose]): Current Pose
+        prev_odom ([Pose]): Previous Pose
+    """
+    u = compute_control(cur_odom, prev_odom)
+
+    loc.bel_bar = np.zeros((mapper.MAX_CELLS_X, mapper.MAX_CELLS_Y, mapper.MAX_CELLS_A))
+
+    for prev_x in range(mapper.MAX_CELLS_X):
+        for prev_y in range(mapper.MAX_CELLS_Y):
+            for prev_theta in range(mapper.MAX_CELLS_A):
+                if (loc.bel[prev_x, prev_y, prev_theta] < 0.0001): continue
+
+                for cur_x in range(mapper.MAX_CELLS_X):
+                    for cur_y in range(mapper.MAX_CELLS_Y):
+                        for cur_theta in range(mapper.MAX_CELLS_A):
+                            p = odom_motion_model(mapper.from_map(cur_x, cur_y, cur_theta), mapper.from_map(prev_x, prev_y, prev_theta),u)
+
+                            # Keep running sum of bel_bar
+                            loc.bel_bar[cur_x, cur_y, cur_theta] += p * loc.bel[prev_x, prev_y, prev_theta]
+
+    # Normalize bel bar
+    loc.bel_bar /= np.sum(loc.bel_bar)
+``` 
+
+
+### Sensor Model 
+
+```
+def sensor_model(obs):
+    """ This is the equivalent of p(z|x).
+
+
+    Args:
+        obs ([ndarray]): A 1D array consisting of the true observations for a specific robot pose in the map 
+
+    Returns:
+        [ndarray]: Returns a 1D array of size 18 (=loc.OBS_PER_CELL) with the likelihoods of each individual sensor measurement
+    """
+    prob_array = loc.gaussian(obs, loc.obs_range_data.flatten(), loc.sensor_sigma)
+    return prob_array
+
+```
+
+### Update Step 
+
+```
+def update_step():
+    """ Update step of the Bayes Filter.
+    Update the probabilities in loc.bel based on loc.bel_bar and the sensor model.
+    """
+    for cur_x in range(mapper.MAX_CELLS_X):
+        for cur_y in range(mapper.MAX_CELLS_Y):
+            for cur_theta in range(mapper.MAX_CELLS_A):
+                # Get the sensor model and update the belief
+                p = sensor_model(mapper.get_views(cur_x, cur_y, cur_theta))
+                loc.bel[cur_x, cur_y, cur_theta] = np.prod(p) * loc.bel_bar[cur_x, cur_y, cur_theta]
+
+    # Normalize bel
+    loc.bel /= np.sum(loc.bel)
+```
 
 
 ## Discussion
