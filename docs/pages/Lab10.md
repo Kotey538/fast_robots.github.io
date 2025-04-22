@@ -14,6 +14,7 @@ In Lab 10, I implemented grid localization using a Bayes filter to estimate the 
 
 
 ## Compute Control  
+The `compute_control()` function calculates the odometry motion parameters between two poses. It determines the initial rotation using NumPy's `arctan2()` and normalizes it within [-180°, 180°]. The translation  is computed using `np.linalg.norm()` to efficiently measure the Euclidean distance. The final rotation is similarly calculated and normalized.
 
 ```python
 def compute_control(cur_pose, prev_pose):
@@ -53,6 +54,8 @@ def compute_control(cur_pose, prev_pose):
 
 ### Odometry Motion Model
 
+The `odom_motion_model()` function computes the likelihood of the robot transitioning from a previous pose to a current pose given control inputs. It leverages compute_control() to extract motion parameters, then calculates the probabilities for each motion component (rotations and translation) using Gaussian distributions centered on the provided control inputs. These individual probabilities are multiplied, assuming independence, to yield the overall transition probability.
+
 ```
 def odom_motion_model(cur_pose, prev_pose, u):
     """ Odometry Motion Model
@@ -75,7 +78,9 @@ def odom_motion_model(cur_pose, prev_pose, u):
     return prob
 ```
 
-## Prediction Step  
+## Prediction Step 
+
+The `prediction_step()` function implements the prediction stage of the Bayes filter. It iterates over a discretized 3D grid, computing transition probabilities using `odom_motion_model()` for all possible transitions. To enhance computational efficiency, grid cells with negligible belief values (below 0.0001) are skipped. The updated probabilities across the grid are then normalized to form a valid probability distribution.
 
 ```
 def prediction_step(cur_odom, prev_odom):
@@ -110,6 +115,8 @@ def prediction_step(cur_odom, prev_odom):
 
 ### Sensor Model 
 
+The `sensor_model()` function calculates the likelihood of sensor measurements given a specific robot pose. Each sensor measurement’s probability is modeled independently as a Gaussian distribution, returning an array of likelihoods corresponding to each measurement.
+
 ```
 def sensor_model(obs):
     """ This is the equivalent of p(z|x).
@@ -127,6 +134,10 @@ def sensor_model(obs):
 ```
 
 ### Update Step 
+
+The `update_step()` function integrates sensor data into the predicted belief. For each grid cell, it uses `sensor_model()` to calculate measurement likelihoods, multiplies these with the predicted beliefs from the previous step, and normalizes the result. This produces an updated probabilistic estimate of the robot’s position within the discretized environment.
+
+
 
 ```
 def update_step():
