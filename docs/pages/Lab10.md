@@ -12,8 +12,9 @@ In Lab 10, I implemented grid localization using a Bayes filter to estimate the 
  
 ## Prelab
 
+## Helper Functions 
 
-## Compute Control  
+### Compute Control  
 The `compute_control()` function calculates the odometry motion parameters between two poses. It determines the initial rotation using NumPy's `arctan2()` and normalizes it within [-180°, 180°]. The translation  is computed using `np.linalg.norm()` to efficiently measure the Euclidean distance. The final rotation is similarly calculated and normalized.
 
 ```python
@@ -78,7 +79,7 @@ def odom_motion_model(cur_pose, prev_pose, u):
     return prob
 ```
 
-## Prediction Step 
+### Prediction Step 
 
 The `prediction_step()` function implements the prediction stage of the Bayes filter. It iterates over a discretized 3D grid, computing transition probabilities using `odom_motion_model()` for all possible transitions. To enhance computational efficiency, grid cells with negligible belief values (below 0.0001) are skipped. The updated probabilities across the grid are then normalized to form a valid probability distribution.
 
