@@ -10,7 +10,6 @@ In Lab 10, I implemented grid localization using a Bayes filter to estimate the 
 
 * * *
  
-## Prelab
 
 ## Helper Functions 
 
@@ -155,11 +154,21 @@ def update_step():
     # Normalize bel
     loc.bel /= np.sum(loc.bel)
 ```
+## Simulation
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/fk9K2IcOY-U" title="Fast Robots Lab 10: Simulated Trajectory" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/SfMDA2--pIk" title="Fast Robots Lab 10: Simulated Localization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
 
 
 ## Discussion
 
-This lab emphasized the importance of accurate sensor data collection and reliable control when performing mapping tasks. It provided experience with IMU and ToF sensor data for 2D spatial understanding. The process of debugging the motor drivers, and requisition of data from the ToF and IMU reinforced the value of methodical testing and system-level troubleshooting. This lab laid a strong foundation for future work in localization and autonomous navigation.
 
 * * *
 
