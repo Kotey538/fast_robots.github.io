@@ -345,6 +345,7 @@ float angle_difference(float target_angle, float current_angle) {
 
 ## Mapping
 
+My general strategy for mapping using the orientation control function was to increment the desired angle step by step. At each increment, I used proportional control to rotate the robot to the target angle. Once a non-zero IMU reading confirmed the orientation update, I recorded the angle. I then waited for the distance sensor to become ready, recorded the corresponding distance, and proceeded to the next angle increment. This process continued until the full rotation was completed.
 
 ```c
 case MAPPING:  {
@@ -457,11 +458,9 @@ case MAPPING:  {
 ![image](../images/lab9/(5,-3).png)
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/hjztvWUd7w8" title="Fast Robots Lab 9: Spinning When Going Past 180°" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/7g8uUocSzJU" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
-
-
 
 
 ## Discussion
