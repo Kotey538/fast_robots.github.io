@@ -16,6 +16,7 @@ I began the lab by running the notebook lab11_sim.ipynb to verify that the provi
 
 ![image](../images/lab11/sim.PNG)
 
+From the results of the simulated localization, it is clear that the odometry model (red) deviates significantly from the actual trajectory. In contrast, the belief estimate (blue) closely aligns with the ground truth data (green), demonstrating the effectiveness of the Bayes filter’s update step in correcting for odometry errors.
 
 
 
