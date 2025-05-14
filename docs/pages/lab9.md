@@ -454,7 +454,7 @@ case MAPPING:  {
 </div>
 
 <div id="L2" class="tabcontent 2" style="display: block">
-![image](../images/lab9/Scope.jpg)
+<img src="(5,-3).png" alt="Robot scan at (5,-3)" style="max-width: 100%; height: auto;">
 </div>
 
 <div id="W2" class="tabcontent 2">
