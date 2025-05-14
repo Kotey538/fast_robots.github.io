@@ -1,10 +1,10 @@
 ---
 title: "MAE 4910 Fast Robots"
-description: "Lab 9: Mapping"
+description: "Lab 11: Localization on the real robot"
 layout: default
 ---
 
-# Lab 9: Mapping
+# Lab 11: Localization on the real robot
 
 In Lab 9, I implemented a mapping routine to generate a spatial representation of a static room using my RC robot. By rotating the robot in place at marked locations, I collected Time-of-Flight (ToF) distance measurements and used orientation data from the IMU to associate each measurement with an angle. I then transformed these local readings into a global reference frame using transformation matrices. Finally, I visualized the mapped environment and approximated the walls using line segments to create a line-based map for future localization and navigation tasks.
 
