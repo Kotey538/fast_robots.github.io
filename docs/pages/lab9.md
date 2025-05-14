@@ -448,13 +448,13 @@ case MAPPING:  {
 ```
 
 <div class="tab">
-<button class="tablinks 2 active" onclick="openTab(event, 'L2', '2')">(5,-3)</button>
+<button class="tablinks 2 active" onclick="openTab(event, 'L2', '2')">Linux/FreeBSD</button>
 <button class="tablinks 2" onclick="openTab(event, 'W2', '2')">Windows</button>
 <button class="tablinks 2" onclick="openTab(event, 'M2', '2')">macOS</button>
 </div>
 
 <div id="L2" class="tabcontent 2" style="display: block">
-<img src="(5,-3).png" alt="Robot scan at (5,-3)" style="max-width: 100%; height: auto;">
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source FastRobots_ble/bin/activate</code></pre></div></div>
 </div>
 
 <div id="W2" class="tabcontent 2">
