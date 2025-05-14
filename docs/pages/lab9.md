@@ -167,7 +167,7 @@ case STUNT:  {
 }
 ```
 
-## Orientation control
+## Orientation Control
 
 I decided to tune my PID orientation controller to enable the robot to perform on-axis turns in small, accurate increments. To achieve this, I re-implemented the ORIENT_DMP_P command from Lab 6 and modified it to accept a delta angle rather than an absolute target. This delta defined the incremental step size for the desired orientation. I then placed the proportional control logic inside a for-loop to sequentially step through each target angle, allowing the robot to rotate in controlled increments.
 
@@ -270,6 +270,67 @@ This is the result.
 <br>
 
 There were several issues with the performance of my RC car. During testing, the robot rotated more than 360 degrees and eventually disconnected from Bluetooth. Based on similar issues in earlier labs, I initially suspected the disconnection was caused by how data was being transmitted. However, the robot’s behavior also suggested that either the calibration factor or the tuning of the PID orientation controller was incorrect, likely due to the recent replacement of the motor driver. To isolate the problem, I ran the SPIN_TEST command to check if the robot could still perform on-axis turns. While the robot connected to Bluetooth successfully, it disconnected within 15 seconds before I was even able to run a command. This suggests that the disconnection issue may not be related to data transmission but instead to another underlying factor.
+
+## Orientation Control Continued
+
+To complete this lab despite ongoing Bluetooth connection issues, I switched to using another student's robot. In order to use their hardware, I adjusted my calibration factor, updated the motor control pins, and modified the sign of the orientation error to ensure the motors responded correctly. To further implement my orientation control, I converted the orientation command from Lab 6 into a function, allowing for smoother integration for a mapping command.
+```c
+void ORIENT_DMP_P(float target){      
+
+    // for (int warmup = 0; warmup < 50; warmup++) {
+
+    //     icm_20948_DMP_data_t dummy;
+    //     myICM.readDMPdataFromFIFO(&dummy);
+    //     delay(20);
+
+    // }
+
+    unsigned long start_time = millis();
+
+
+    while (millis() - start_time < settling_time) {
+
+        icm_20948_DMP_data_t data;
+        myICM.readDMPdataFromFIFO(&data);
+
+        // Is valid data available?
+        if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) {
+            // We have asked for GRV data so we should receive Quat6
+            if ((data.header & DMP_header_bitmap_Quat6) > 0) {
+                double qy = ((double)data.Quat6.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
+                double qx = ((double)data.Quat6.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
+                double qz = -((double)data.Quat6.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
+                double qw = sqrt(1.0 - ((qy * qy) + (qx * qx) + (qz* qz)));
+
+                // Convert the quaternion to Euler angles...
+
+                double t3 = +2.0 * (qw * qz + qx * qy);
+                double t4 = +1.0 - 2.0 * (qy * qy + qz * qz);
+                float yaw = atan2(t3, t4) * 180.0 / PI;
+                
+                int time = (int) millis();
+                float e = angle_difference(target, yaw);
+                float u = K_p*e;
+                spin_control(u);
+                
+            }
+        }
+        
+    }
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+}
+```
+
+I also created an `angle_difference()` function to correctly calculate error, accounting for the DMP’s wrapping behavior from 0 to 180 and -180 to 0 degrees. During early testing of my mapping function, I encountered unexpected behavior near the wraparound boundary, which led to incorrect error calculations. Incorporating this function resolved the discontinuities and ensured smooth and accurate orientation updates throughout the robot’s rotation.
+
+
+
+
 
 
 ## Discussion
