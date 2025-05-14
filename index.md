@@ -24,3 +24,5 @@ Hello! My name is Kotey Ashie, and I’m a double major in Mechanical Engineerin
 - [Lab 8: Stunts](docs/pages/lab8.md)
 - [Lab 9: Mapping](docs/pages/lab9.md)
 - [Lab 10: Grid Localization using Bayes Filter](docs/pages/lab10.md)
+- [Lab 11: Localization on the Real Robot](docs/pages/lab11.md)
+- [Lab 12: Path Planning and Execution](docs/pages/lab12.md)
