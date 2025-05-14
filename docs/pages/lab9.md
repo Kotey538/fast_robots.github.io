@@ -328,8 +328,142 @@ void ORIENT_DMP_P(float target){
 
 I also created an `angle_difference()` function to correctly calculate error, accounting for the DMP’s wrapping behavior from 0 to 180 and -180 to 0 degrees. During early testing of my mapping function, I encountered unexpected behavior near the wraparound boundary, which led to incorrect error calculations. Incorporating this function resolved the discontinuities and ensured smooth and accurate orientation updates throughout the robot’s rotation.
 
+```c
+float angle_difference(float target_angle, float current_angle) {
+    float diff = current_angle - target_angle;
+    diff = fmod((diff + 180.0), 360.0);
+    if (diff < 0)
+        diff += 360.0;
+    return diff - 180.0;
+}
+```
+
+## Mapping
 
 
+```c
+case MAPPING:  {
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(K_p);
+    if (!success)
+        return;
+
+    // Extract the next value from the command string as an integer
+    success = robot_cmd.get_next_value(settling_time);
+    if (!success)
+        return;
+  
+    float increment = 20.0;
+
+
+    memset(time_data, 0, sizeof(time_data));
+    memset(distance_data, 0, sizeof(distance_data));
+    memset(yaw_data, 0, sizeof(yaw_data));
+
+
+    i = 0;
+
+    distanceSensor.setDistanceModeShort();
+    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+
+    for (float angle = -20.0; angle < 360.0; angle += increment) {
+        
+        float adjusted_angle = fmod(angle + 180.0, 360.0) - 180.0;
+        ORIENT_DMP_P(adjusted_angle);
+        
+        while(1){
+
+            icm_20948_DMP_data_t data;
+            myICM.readDMPdataFromFIFO(&data);
+
+            // Is valid data available?
+            if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) {
+                // We have asked for GRV data so we should receive Quat6
+                if ((data.header & DMP_header_bitmap_Quat6) > 0) {
+                    double qy = ((double)data.Quat6.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
+                    double qx = ((double)data.Quat6.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
+                    double qz = -((double)data.Quat6.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
+                    double qw = sqrt(1.0 - ((qy * qy) + (qx * qx) + (qz* qz)));
+
+                    // Convert the quaternion to Euler angles...
+
+                    // yaw (z-axis rotation)
+                    double t3 = +2.0 * (qw * qz + qx * qy);
+                    double t4 = +1.0 - 2.0 * (qy * qy + qz * qz);
+                    yaw_data[i] = atan2(t3, t4) * 180.0 / PI; 
+
+                    break;
+
+                }
+
+            }
+        }
+
+        while (!distanceSensor.checkForDataReady()) {
+            delay(1);  // small delay to avoid tight loop
+        }
+
+        distance_data[i] = distanceSensor.getDistance();
+        time_data[i] = (int)millis();
+        distanceSensor.clearInterrupt();
+        distanceSensor.stopRanging();
+        distanceSensor.startRanging();
+
+        i++;
+        if (i >= array_size) break; // prevent overflow
+
+
+    }
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+
+    // Serial.println("Sending Data");
+
+    //Send back the array
+    for (int j = 0; j < array_size; j++) {
+
+      if (time_data[j] != 0 ) {
+
+        tx_estring_value.clear();
+        tx_estring_value.append("Distance:");
+        tx_estring_value.append(distance_data[j]);
+        tx_estring_value.append(", yaw:");
+        tx_estring_value.append(yaw_data[j]);
+        tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+
+      } else break;
+
+
+    }
+
+    // Serial.println("STUNT done");
+
+    break;
+}
+```
+
+<div class="tab">
+<button class="tablinks 2 active" onclick="openTab(event, 'L2', '2')">(5,-3)</button>
+<button class="tablinks 2" onclick="openTab(event, 'W2', '2')">Windows</button>
+<button class="tablinks 2" onclick="openTab(event, 'M2', '2')">macOS</button>
+</div>
+
+<div id="L2" class="tabcontent 2" style="display: block">
+![image](../images/lab9/Scope.jpg)
+</div>
+
+<div id="W2" class="tabcontent 2">
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\FastRobots_ble\Scripts\activate</code></pre></div></div>
+</div>
+
+<div id="M2" class="tabcontent 2">
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source FastRobots_ble/bin/activate</code></pre></div></div>
+</div>
 
 
 
