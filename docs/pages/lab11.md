@@ -6,7 +6,7 @@ layout: default
 
 # Lab 11: Localization on the real robot
 
-In Lab 9, I implemented a mapping routine to generate a spatial representation of a static room using my RC robot. By rotating the robot in place at marked locations, I collected Time-of-Flight (ToF) distance measurements and used orientation data from the IMU to associate each measurement with an angle. I then transformed these local readings into a global reference frame using transformation matrices. Finally, I visualized the mapped environment and approximated the walls using line segments to create a line-based map for future localization and navigation tasks.
+In Lab 11, I applied the Bayes filter on the real robot to perform localization using only the update step. Due to noisy motion, the prediction step was omitted, and localization was achieved by collecting a full 360-degree scan of distance measurements at 20-degree increments. The robot’s belief distribution was updated using these sensor readings, and the most likely position was identified as the grid cell with the highest probability. I repeated this process at four known ground truth positions to evaluate accuracy. The results were visualized and compared to the expected poses, highlighting differences in performance between simulation and real-world conditions.
 
 * * *
  
