@@ -12,7 +12,7 @@ In Lab 11, I applied the Bayes filter on the real robot to perform localization 
  
 ## Test Localization in Simulation
 
-![image](../images/lab11/sim.png)
+![image](../images/lab11/sim.PNG)
 
 
 
