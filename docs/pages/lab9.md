@@ -543,6 +543,14 @@ With scans collected at each of the specified coordinates, the next step was to 
 
 ![image](../images/lab9/matrix.PNG)
 
+The Time-of-Flight sensor was mounted 3 inches from the rear of the car, resulting in the following position vector relative to the robot’s frame:
+
+![image](../images/lab9/position.PNG)
+
+## Final Map
+
+![image](../images/lab9/map.png)
+
 
 ## Discussion
 
