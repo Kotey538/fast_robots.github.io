@@ -22,10 +22,11 @@ From the results of the simulated localization, it is clear that the odometry mo
 
 ## Discussion
 
-This lab emphasized the importance of accurate sensor data collection and reliable control when performing mapping tasks. It provided experience with IMU and ToF sensor data for 2D spatial understanding. The process of debugging the motor drivers, and requisition of data from the ToF and IMU reinforced the value of methodical testing and system-level troubleshooting. This lab laid a strong foundation for future work in localization and autonomous navigation.
+This lab emphasized the challenges of real-world localization compared to simulation. Working with the physical robot reinforced the importance of accurate sensor alignment and consistent rotation behavior. The experience deepened my understanding of probabilistic localization and demonstrated the gap between idealized models and practical implementation.
 
 * * *
 
 # Acknowledgements
 *   I referenced Stephan Wagner's page.
+*   I used Josh Simpson's RC car
 
