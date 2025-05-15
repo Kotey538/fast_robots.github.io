@@ -508,24 +508,24 @@ I observed that the quality of the on-axis turns varied slightly from one increm
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="../images/lab9/(5,-3).png" alt="(5,-3)" style="max-width: 100%; height: auto; width: 300px;" />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7g8uUocSzJU" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/R6e5773sN3I" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
+
 
 ### (5,3)
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="../images/lab9/(5,3).png" alt="(5,3)" style="max-width: 100%; height: auto; width: 300px;" />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7g8uUocSzJU" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/jvro13ow9_Y" title="Fast Robots Lab 9: Mapping (5,3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
-
 
 ### (0,3)
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="../images/lab9/(0,3).png" alt="(0,3)" style="max-width: 100%; height: auto; width: 300px;" />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7g8uUocSzJU" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/51t4djG8ICU" title="Fast Robots Lab 9: Mapping (0,3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
 
@@ -533,10 +533,9 @@ I observed that the quality of the on-axis turns varied slightly from one increm
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="../images/lab9/(-3,-2).png" alt="(-3,-2)" style="max-width: 100%; height: auto; width: 300px;" />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7g8uUocSzJU" title="Fast Robots Lab 9: Mapping (5,-3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/2Hy-CPEAqes" title="Fast Robots Lab 9: Mapping (-3,-2)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br>
-
 
 ## Discussion
 
