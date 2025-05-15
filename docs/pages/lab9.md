@@ -560,4 +560,5 @@ This lab emphasized the importance of accurate sensor data collection and reliab
 
 # Acknowledgements
 *   I referenced Stephan Wagner's page.
+*   I used Josh Simpson's RC car
 
