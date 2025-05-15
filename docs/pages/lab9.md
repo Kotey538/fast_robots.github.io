@@ -343,6 +343,54 @@ float angle_difference(float target_angle, float current_angle) {
 </div>
 <br>
 
+I ended up converted the P controller into a PD controller to address oscillatory behavior observed during turning. The robot was exhibiting a snaking motion, which caused it to move away from the target Point it was supposed to be turning about on its axis. Adding the derivative term helped dampen these oscillations and improved stability, allowing the robot to maintain a more accurate positioning.
+
+```c
+void ORIENT_DMP_PD(float target) {
+    unsigned long start_time = millis();
+    float ep_prev = 0;
+    int t_prev = millis();
+
+    while (millis() - start_time < settling_time) {
+
+        icm_20948_DMP_data_t data;
+        myICM.readDMPdataFromFIFO(&data);
+
+        if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) {
+            if ((data.header & DMP_header_bitmap_Quat6) > 0) {
+                double qy = ((double)data.Quat6.Data.Q1) / 1073741824.0;
+                double qx = ((double)data.Quat6.Data.Q2) / 1073741824.0;
+                double qz = -((double)data.Quat6.Data.Q3) / 1073741824.0;
+                double qw = sqrt(1.0 - ((qy * qy) + (qx * qx) + (qz * qz)));
+
+                double t3 = +2.0 * (qw * qz + qx * qy);
+                double t4 = +1.0 - 2.0 * (qy * qy + qz * qz);
+                float yaw = atan2(t3, t4) * 180.0 / PI;
+
+                int t_curr = millis();
+                float ep = angle_difference(target, yaw);
+                int dt = t_curr - t_prev;
+                if (dt == 0) dt = 1;  // avoid divide-by-zero
+
+                float ed = (ep - ep_prev) / dt;
+
+                float u = K_p * ep + K_d * ed;
+                spin_control(u);
+
+                // update for next iteration
+                ep_prev = ep;
+                t_prev = t_curr;
+            }
+        }
+    }
+
+    analogWrite(PWM_0, 0);
+    analogWrite(PWM_1, 0);
+    analogWrite(PWM_3, 0);
+    analogWrite(PWM_5, 0);
+}
+```
+
 ## Mapping
 
 My general strategy for mapping using the orientation control function was to increment the desired angle step by step. At each increment, I used proportional control to rotate the robot to the target angle. Once a non-zero IMU reading confirmed the orientation update, I recorded the angle. I then waited for the distance sensor to become ready, recorded the corresponding distance, and proceeded to the next angle increment. This process continued until the full rotation was completed.
@@ -452,6 +500,8 @@ case MAPPING:  {
     break;
 }
 ```
+
+I observed that the quality of the on-axis turns varied slightly from one increment to the next. However, the robot consistently remained close to its starting position and did not drift significantly. It typically stayed within the same floor tile as the point, indicating that the overall deviation was minor and acceptable for mapping purposes.
 
 
 ### (5,-3)
