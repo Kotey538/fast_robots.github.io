@@ -537,6 +537,13 @@ I observed that the quality of the on-axis turns varied slightly from one increm
 </div>
 <br>
 
+## Transformation Matrices
+
+With scans collected at each of the specified coordinates, the next step was to convert the distance sensor readings from the robot’s local frame into the inertial reference frame of the room. With homogeneous transformation matrix all measurements to be plotted can be plotted in a common global coordinate system for accurate map construction.
+
+![image](../images/lab9/matrix.PNG)
+
+
 ## Discussion
 
 This lab emphasized the importance of accurate sensor data collection and reliable control when performing mapping tasks. It provided experience with IMU and ToF sensor data for 2D spatial understanding. The process of debugging the motor drivers, and requisition of data from the ToF and IMU reinforced the value of methodical testing and system-level troubleshooting. This lab laid a strong foundation for future work in localization and autonomous navigation.
